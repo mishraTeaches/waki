@@ -1,0 +1,99 @@
+<div class="midConwrap"> 
+    <div class="signinwrap">
+      <div class="signinCon">
+        <!--Register  Header Row Start Here-->
+        <div class="row signinheaderCon clearfix">
+          <div class="col-sm-7 padz">
+            <div class="signinwith">
+            <h3>Register</h3>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</h4>
+          </div>
+          </div>
+          <div class="col-sm-5 padz">
+            <div class="registerrow">
+              <div class="register_text register">Already have an account ? <a href="javascript:void(0)" routerLink="/login">Login here </a></div>
+            </div>
+          </div>
+        </div>
+        <!--Register Header Row End Here-->
+
+        <!--Register Form Section Start Here-->
+          <div class="emailAddressbox">
+            <form #registerform="ngForm" (ngSubmit)="register(registerform.valid)" novalidate>
+                <div class="row clearfix">
+                    <div class="col-sm-7 col-md-6 col-lg-5">
+                      <div class="form-group">
+                        <label>Email address</label>
+                        <div class="inputrow"> 
+                          <input class="form-control" type="text" name="email"  #email="ngModel" [(ngModel)]="regUser.email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required placeholder="" />
+                        </div>
+                        <div class="field-error" *ngIf="email.errors">
+                            <p class="field-error" *ngIf="email['errors']['required'] && isFormSubmit">{{'error.email.required' | translate}} </p>
+                            <p class="field-error" *ngIf="email['errors']['pattern'] && isFormSubmit">{{'error.email.invalid' | translate}} </p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label>First name</label>
+                          <div class="inputrow">
+                            <input class="form-control" type="text" name="firstName" #firstName = "ngModel" [(ngModel)] = "regUser.firstName" pattern = "^[a-zA-Z]+$" required placeholder="" />
+                          </div>
+                          <div class="field-error" *ngIf="firstName.errors">
+                              <p class="field-error" *ngIf="firstName['errors']['required'] && isFormSubmit">{{'error.firstName.required' | translate}} </p>
+                              <p class="field-error" *ngIf="firstName['errors']['pattern'] && isFormSubmit">{{'error.firstName.invalid' | translate}} </p>
+                            </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>Last name</label>
+                          <div class="inputrow">
+                            <input class="form-control" type="text" name="lastName" #lastName = "ngModel" [(ngModel)] = "regUser.lastName" required placeholder="" />
+                          </div>
+                          <div class="field-error" *ngIf="lastName.errors">
+                              <p class="field-error" *ngIf="lastName['errors']['required'] && isFormSubmit">{{'error.lastName.required' | translate}} </p>
+                              <p class="field-error" *ngIf="lastName['errors']['pattern'] && isFormSubmit">{{'error.lastName.invalid' | translate}} </p>
+                            </div>
+                      </div>
+                      <div class="form-group">
+                          <label>Country Code</label>
+                          <div class="inputrow">
+                            <select class="form-control" name="countryCode"  #countryCode="ngModel" [(ngModel)]="regUser.countryCode"required>
+                                <option value="">Please select country code</option>
+                              <option *ngFor="let countr of getCountryData;" [value]="countr.dial_code">{{countr.dial_code}} {{countr.name}}</option>
+                            </select>
+                          </div>
+                          <div class="field-error" *ngIf="countryCode.errors">
+                              <p class="field-error" *ngIf="countryCode['errors']['required'] && isFormSubmit">{{'error.country.required' | translate}} </p>
+                              <!-- <p class="field-error" *ngIf="phone['errors']['pattern'] && isFormSubmit">{{'error.phone.invalid' | translate}} </p> -->
+                            </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Phone no.</label>
+                        <div class="inputrow">
+                          <input class="form-control" type="text" name="phone" #phone = "ngModel" [(ngModel)] = "regUser.phone" required onkeypress='return (event.which > 47 && event.which <= 57) || event.which == 8 || event.which == 46'   placeholder="Enter a phone number" />
+                        </div>
+                        <div class="field-error" *ngIf="phone.errors">
+                            <p class="field-error" *ngIf="phone['errors']['required'] && isFormSubmit">{{'error.phone.required' | translate}} </p>
+                            <!-- <p class="field-error" *ngIf="phone['errors']['pattern'] && isFormSubmit">{{'error.phone.invalid' | translate}} </p> -->
+                          </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Password</label>
+                      <div class="inputrow">
+                        <input class="form-control" type="password" name="password" #password = "ngModel" [(ngModel)]="regUser.password" required  placeholder=""/>
+                      </div>
+                      <div class="field-error" *ngIf="password.errors">
+                          <p class="field-error" *ngIf="password['errors']['required'] && isFormSubmit">{{'error.password.required' | translate}} </p>
+                      </div>
+                  </div>
+                      <div class="form-group">
+                      <button type="submit" class="btn btn-primary signin register">SUBMIT <span class="fa fa-angle-right"></span></button>
+                    </div>
+                    </div>
+                  </div>
+            </form>
+          </div>
+        <!--Register Form Section End Here-->
+
+      </div>
+    </div>
+  </div>

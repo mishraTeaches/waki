@@ -1,0 +1,54 @@
+
+  <!--Header Section End Here--> 
+  <!-- Product Subcategories Section Starts Here-->
+  <ngx-ui-loader></ngx-ui-loader>
+  <div class="midConwrap">
+    <div class="subcategorieswrap">
+      <div class="subcategories-details" *ngIf="subCategoryList.length > 0;else notfound">
+        <div class="subcategories-banner">
+          <figure>
+             <img src="assets/images/paint_down_ban.jpg" alt="" > 
+            </figure>
+        </div>
+        
+        <!--Top Wear Section Start Here-->
+        <div class="product-subcategory" [attr.id]="names._id"  *ngFor="let names of subCategoryList;let i=index;">
+          <h3>{{names.productcategoryName}} </h3> 
+          <div class="subCategorySlider">
+            <div class="row clearfix">
+              <div class="col-xs-6 col-sm-4 col-md-2">
+                <div class="item clearfix" *ngIf="prodAvail"> 
+                  <a href="javascript:void(0);" class="itembox">
+                  <div class="itemimgbx" [routerLink]="['/prod-list',names._id]">
+                     <img [src]="names.image" alt="" />
+                  </div>
+                  <!-- <h4>{{prodList.productName}}</h4> -->
+                  </a> 
+                </div>
+              </div>
+              <div  class="empty"  *ngIf="!prodAvail">
+                <span>its empty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Top Wear Section End Here--> 
+        
+        <!--Bottom Wear Section Start Here-->
+    
+        <!--Bottom Wear Section End Here--> 
+        
+        <!--Foot Wear Section Start Here-->
+    
+        <!--Foot Wear Section End Here--> 
+        
+        <!--Accessories Wear Section Start Here-->
+   
+        <!--Accessories Wear Section End Here--> 
+      </div>
+      <ng-template #notfound> {{subCategoryNotFound}}</ng-template>
+    </div>
+  </div>
+  <!-- Product Subcategories Section End Here--> 
+  
+

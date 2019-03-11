@@ -1,0 +1,70 @@
+<div class="midConwrap"> 
+  <div class="signinwrap">
+    <div class="signinCon">
+      <!--Sign In Header Row Start Here-->
+      <div class="row signinheaderCon clearfix">
+        <div class="col-sm-5 padz">
+          <div class="signinwith">
+          <h3>{{'login_component.sign_in' | translate}}</h3>
+          <h6>{{'login_component.sign_in with' | translate}}</h6>
+          <div class="signinwithsocialrow">
+            <a href="javascript:void(0);" (click)="socialSignIn('facebook')" ><div class="socialicon facebook"></div></a>
+            <a href="javascript:void(0);" (click)="socialSignIn('google')"><div class="socialicon googleplus"></div></a>
+          </div>
+          <!-- (click)="socialSignIn('google')" -->
+          <!--  -->
+          <!-- socialSignIn -->
+        </div>
+        </div>
+        <div class="col-sm-7 padz">
+          <div class="registerrow">
+            <div class="wakilogo" routerLink='/home'></div>
+            <div class="register_text">{{'login_component.dont_have_account' | translate}} ? <a href="javascript:void(0)" routerLink="/register">{{'login_component.register' | translate}} </a></div>
+          </div>
+        </div>
+      </div>
+      <!--Sign In Header Row End Here-->
+
+      <!--Sign In Form Section Start Here-->
+        <div class="emailAddressbox">
+          <h4>{{'login_component.use_email' | translate}}</h4>
+          <form #loginform="ngForm" (ngSubmit)="validateLogin(loginform.valid)" novalidate>
+            <div class="row clearfix">
+              <div class="col-sm-7 col-md-6 col-lg-5">
+                <div class="form-group">
+                  <label>{{'login_component.email_address' | translate}}</label>
+                  <div class="inputrow"> 
+                    <input class="form-control" type="text" name="email"  #email="ngModel" [(ngModel)]="loginUser.email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required placeholder="" />
+                  </div>
+                  <div class="field-error" *ngIf="email.errors">
+                      <p class="field-error" *ngIf="email['errors']['required'] && isFormSubmit">{{'error.email.required' | translate}} </p>
+                      <p class="field-error" *ngIf="email['errors']['pattern'] && isFormSubmit">{{'error.email.invalid' | translate}} </p>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label>{{'login_component.password' | translate}}</label>
+                    <div class="inputrow">
+                      <input class="form-control" type="password" name="password" #password = "ngModel" [(ngModel)]="loginUser.password" required  placeholder="" />
+                    </div>
+                    <div class="field-error" *ngIf="password.errors">
+                        <p class="field-error" *ngIf="password['errors']['required'] && isFormSubmit">{{'error.password.required' | translate}} </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="forgot_text_row">
+                      <a href="javascript:void(0);">{{'login_component.forgot_password' | translate}}</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-primary signin">{{'login_component.sign_in' | translate}} <span class="fa fa-angle-right"></span>
+                </button>
+              </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      <!--Sign In Form Section End Here-->
+
+    </div>
+  </div>
+</div>

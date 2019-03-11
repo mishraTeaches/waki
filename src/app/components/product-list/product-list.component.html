@@ -1,0 +1,96 @@
+<div class="midConwrap"> 
+  <div class="productlistingwrap">
+    <div class="category_subcategory_row">
+      <h4>Category > Subcategory </h4>
+    </div>
+    <div class="productlistingCon">
+      <div class="row wd5 clearfix">
+        <!--Subcategory Section Start Here-->
+        <div class="col-sm-2 wdp5 wds20">
+          <div class="subcategoryColumn">
+            <!--Brands Box Start Here-->
+            <div class="categoryColbox">
+              <div class="categoryheadingrow brandshview">Brands</div>
+              <div class="categoryheadingrow brandslidehview">Brands <span class="fa fa-angle-down"></span></div>
+              <div class="categorylist">
+                  <div class="selectcategory" *ngFor="let filtering of filterlist">
+                      <input type="checkbox" [attr.id]="filtering._id" [checked]="filtering.checked" (change)="selecting(filtering._id,filtering.name,$event)"/>
+                      <label for="{{filtering._id}}">{{filtering.name}}</label>
+                  </div>
+              </div>
+            </div>
+            <!--Brands Box End Here-->
+
+             <!--Category Box Start Here-->
+             <div class="categoryColbox">
+                <div class="categoryheadingrow brandshview">Categories</div>
+                <div class="categoryheadingrow brandslidehview">Categories <span class="fa fa-angle-down"></span></div>
+                <div class="categorylist">
+                    <div class="selectcategory">
+                        <input type="checkbox" id="adidas" />
+                        <label for="adidas">Adidas</label>
+                    </div>
+                    <div class="selectcategory">
+                        <input type="checkbox" id="befree1" />
+                        <label for="befree1">Befree</label>
+                    </div>
+                    <div class="selectcategory">
+                        <input type="checkbox" id="broadway1" />
+                        <label for="broadway1">Broadway</label>
+                    </div>
+                    <div class="selectcategory">
+                        <input type="checkbox" id="calvin_klein1" />
+                        <label for="calvin_klein1">Calvin Klein</label>
+                    </div>
+                    <div class="selectcategory">
+                        <input type="checkbox" id="hugoboss1" />
+                        <label for="hugoboss1">Hugo Boss</label>
+                    </div>
+                    <div class="selectcategory">
+                        <input type="checkbox" id="jack_jones1" />
+                        <label for="jack_jones1">Jack & Jones</label>
+                    </div>
+                    <div class="selectcategory">
+                        <input type="checkbox" id="levi1" />
+                        <label for="levi1">Levi's</label>
+                    </div>
+                </div>
+              </div>
+              <!--Brands Category Box End Here-->
+
+          </div>
+        </div>
+         <!--Subcategory Section Start Here-->
+
+        <div class="col-sm-10 wdp5 wds80">
+          <!--Product Listing Start Here-->
+          <div class="toppicswrap productlisting clearfix">
+            <div class="row clearfix" *ngIf="prodList.length>0;else nofound">
+              <div class="col-sm-2 productlistbox" *ngFor="let product of prodList">
+                <div class="itembox">
+                  <div class="itemimgbx">
+                      <a href="javascript:void(0);">
+                            <img [src]="product.image[0]"  alt="" />
+                      </a>
+                  </div>
+                  <div class="itemdetailsbx">
+                    <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{product['price']*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
+                    <h4>{{product.productName}}</h4>
+                    <div class="bdrrw clearfix"><span class="top_bottom_bdr"></span></div>
+                    <div class="itemcomnm">{{product.brand}}</div>
+                    <div class="itemsmdes" [innerHTML] = "product.description|readMore:false:20|htmlSafe" ></div>
+                    <!--  -->
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+            <ng-template #nofound>{{noProductMessage}}</ng-template>
+          </div>
+          <!--Product Listing End Here-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Product Listing Section End Here-->
