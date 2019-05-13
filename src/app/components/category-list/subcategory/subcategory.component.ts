@@ -20,7 +20,7 @@ export class SubcategoryComponent {
   subCategoryNotFound:boolean=false;
   catId:any;
   currentLanguageData:any={};
-  constructor(private ngxService: NgxUiLoaderService,private toastr: ToastrService,private router:Router,private route: ActivatedRoute,private wakiservice:WakiServiceService,private languageTranslateInfoService:ChangeLangService) 
+  constructor(private ngxService: NgxUiLoaderService,private toastr: ToastrService,private router:Router,private route: ActivatedRoute,private wakiservice:WakiServiceService,private languageTranslateInfoService:ChangeLangService)
   {
     this.param1 = this.route.snapshot.params.id;
     languageTranslateInfoService.translateInfo.subscribe((data) => {
@@ -32,23 +32,22 @@ export class SubcategoryComponent {
        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
  SubCategory(){
-  this.ngxService.start(); 
+  this.ngxService.start();
     let URL = appConstant.baseUrl+'vendor/getProductCategoryName';
     let data={"lang":this.currentLanguageData['lng_code'],"subCategoryId":this.param1}
-    this.wakiservice.createPostRequest(URL,data).subscribe((response: any) => {
-        this.ngxService.stop();
+    this.wakiservice.createPostRequest(URL,data,0).subscribe((response: any) => {
       if(response['statusCode']==200){
+        this.ngxService.stop();
         this.prodAvail=true;
        this.subCategoryList=response['result'];
-       this.toastr.success(response['statusMessage'])
         console.log("DATA",this.subCategoryList)
 
       }
-      else if(response['statusCode']==404)
-      {
+      else{
         this.toastr.error(response['statusMessage'])
         this.subCategoryNotFound=response['statusMessage'];
         this.prodAvail=false;
+        this.ngxService.stop();
       }
       });
   }

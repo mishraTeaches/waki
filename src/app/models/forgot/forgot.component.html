@@ -1,0 +1,42 @@
+<div class="midConwrap">
+  <div class="signinwrap">
+    <div class="signinCon">
+      <!--Register  Header Row Start Here-->
+      <div class="row signinheaderCon clearfix">
+        <div class="col-sm-12 padz">
+          <div class="signinwith">
+          <h3>Forgot Password</h3>
+          <h4>{{statusMessage}}</h4>
+        </div>
+        </div>
+      </div>
+      <!--Register Header Row End Here-->
+
+      <!--Forgot Password Form Section Start Here-->
+        <div class="emailAddressbox">
+          <form #forgotform="ngForm" (ngSubmit)="forgotPassword(forgotform.valid)">
+            <div class="row clearfix">
+              <div class="col-sm-7 col-md-6 col-lg-5">
+                <div class="form-group">
+                  <label>Enter Your Email<span>*</span></label>
+                  <div class="inputrow">
+                    <input class="form-control" type="text" name="email" #email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="forgot.email" required placeholder="Enter your email" />
+                  </div>
+                  <div class="field-error" *ngIf="email.errors">
+                      <p class="field-error" *ngIf="email['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                      <p class="field-error" *ngIf="email['errors']['pattern'] && isFormSubmit">This field is invalid</p>
+                      <!-- <p class="field-error" *ngIf="contact['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-primary signin register">SUBMIT <span class="fa fa-angle-right"></span></button>
+              </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      <!--Forgot Password Form Section End Here-->
+
+    </div>
+  </div>
+</div>

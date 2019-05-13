@@ -1,1 +1,125 @@
-<h4>Hello I am address</h4>
+<div class="tab-content">
+  <!--Saved Address Section Start Here-->
+  <div id="saved_address" class="tab-pane fade in active">
+      <div class="profile_banner">
+          <h3>{{social['firstName']}}</h3>
+          <h4>We Have Saved Your Address</h4>
+          <h2 class="email">{{social['email']}}</h2>
+          <h2 class="mobilenum">{{social['countryCode']}} | {{social['phone']}}</h2>
+          <span class="hichaticon"></span>
+        </div>
+
+      <!--Saved Address Content Start Here-->
+      <div class="savedaddresswrap">
+        <div class="savedaddsbxrow">
+          <div class="row clearfix" *ngIf="addressResponse.length > 0;else notfound">
+            <div class="col-sm-6" *ngFor="let address of addressResponse">
+              <div class="shippedbox">
+              <div class="addressbox">
+                  <div class="edit_delete_option dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="pointer"></span> <span class="pointer"></span> <span class="pointer"></span> </div>
+                  <ul class="dropdown-menu">
+                      <li (click)="sendData(address);">
+                        <button class="btn btn-primary btn-xs">
+                          <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                      </li>
+                      <li (click)="delete(address._id)">
+                        <button class="btn btn-danger btn-xs">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                      </li>
+                    </ul>
+                <h5>{{address['fullName']}}</h5>
+                <h6>{{address['addresses']}}</h6>
+                <h6>Contact: {{address['countryCode']}} {{address['contactNumber']}}</h6>
+            </div>
+           </div>
+          </div>
+          </div>
+          <ng-template #notfound> List is Empty</ng-template>
+        </div>
+        <!--Add New Address Section Box Start Here-->
+          <div class="addnewaddressbtnrw">
+            <div class="addnewaddressbtn">Add new address</div>
+            <div class="add_address_formbx">
+              <div class="row clearfix">
+                <div class="col-sm-6">
+                  <div class="viewmapsbx">
+                      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                          <agm-marker [latitude]="latitude" [longitude]="longitude">
+                          </agm-marker>
+                        </agm-map>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                    <form #saveform = "ngForm" (ngSubmit)="addAddress(saveform.valid)" novalidate>
+                    <div class="addressfillform">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" name="name" type="text" #name = "ngModel" [(ngModel)]="addressObj['name']" type="text" pattern = "^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$" required placeholder="Enter your name"/>
+                            <div class="field-error" *ngIf="name.errors">
+                              <p class="field-error" *ngIf="name['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                              <p class="field-error" *ngIf="name['errors']['pattern'] && isFormSubmit">Invalid Value </p>
+                            </div>
+                          </div>
+
+                      <div class="form-group">
+                        <label>Address</label>
+                        <input class="form-control" name="addr" type="text" #addr = "ngModel" [(ngModel)]="addressObj['address']" placeholder="56 D Block, Sector 110, Noida 201301" #search autocorrect="off" autocapitalize="off" spellcheck="off" required  >
+                        <div class="field-error" *ngIf="addr.errors">
+                          <p class="field-error" *ngIf="addr['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                          <!-- <p class="field-error" *ngIf="addr['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label>House/Flat No.</label>
+                          <input class="form-control" name="house_flat" type="text" #house_flat = "ngModel" [(ngModel)]="addressObj['houseno']" type="text" required placeholder="V 456"/>
+                          <div class="field-error" *ngIf="house_flat.errors">
+                            <p class="field-error" *ngIf="house_flat['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                            <!-- <p class="field-error" *ngIf="house_flat['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact No.</label>
+                            <input class="form-control" name="contact" type="text" #contact = "ngModel" [(ngModel)]="addressObj['contact']" maxlength="13" minlength="6" type="text" autocomplete="off" required onkeypress='return (event.which > 47 && event.which <= 57) || event.which == 8 || event.which == 46' placeholder="Enter your contact number"/>
+                            <div class="field-error" *ngIf="contact.errors">
+                              <p class="field-error" *ngIf="contact['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                              <p class="field-error" *ngIf="contact['errors']['maxlength'] && isFormSubmit">This field is Invalid</p>
+                              <p class="field-error" *ngIf="contact['errors']['minlength'] && isFormSubmit">This field is Invalid</p>
+                              <!-- <p class="field-error" *ngIf="contact['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                            </div>
+                          </div>
+                        <div class="form-group clearfix">
+                            <label>Save As</label>
+                            <div class="saveastype">
+                        <input type="radio" id="worktype" name="radio-group" value="work" (change)="radioSelected('work')">
+                         <label for="worktype">
+                           <span class="bullets_points_save"></span>Work</label>
+                            </div>
+                            <div class="saveastype">
+                                <input type="radio" id="hometype" name="radio-group" value="home"  (change)="radioSelected('home')">
+                                <label for="hometype"><span class="bullets_points_save"></span>Home</label>
+                            </div>
+                            <div class="saveastype">
+                                <input type="radio" id="othrtype" name="radio-group" value="other" (change)="radioSelected('other')">
+                                <label for="othrtype"><span class="bullets_points_save"></span>Others</label>
+                            </div>
+                          </div>
+
+                          <div class="form-group saveadd_subbtnrw">
+                              <button type="submit" class="btn btn-primary">Save Address</button>
+                          </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--Add New Address Section Box End Here-->
+      </div>
+      <!--Saved Address Content End Here-->
+  </div>
+   <!--Saved Address Section End Here-->
+
+</div>

@@ -9,7 +9,7 @@
             <li><a href="javascript:void(0);">Writing Instruments</a></li>
             <li><a href="javascript:void(0);">Travel Accessories</a></li>
             <li><a href="javascript:void(0);">Leather</a></li>
-            <li><a href="javascript:void(0);">Collections</a></li>
+            <!-- <li><a href="javascript:void(0);">Collections</a></li> -->
             <li><a href="javascript:void(0);">Sunglasses</a></li>
             <li><a href="javascript:void(0);">Electronics</a></li>
             <li><a href="javascript:void(0);">Gift Sets</a></li>
@@ -21,14 +21,16 @@
         <div class="shoplinksbx">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="javascript:void(0);">Contact Us</a></li>
+              <li><a href="javascript:void(0);">About Us</a></li>
+            <li><a href="javascript:void(0);" [routerLink]="['/contact']" >Contact Us</a></li>
             <li><a href="javascript:void(0);">FAQ</a></li>
-            <li><a href="javascript:void(0);">T&C </a></li>
-            <li><a href="javascript:void(0);">Terms Of Use</a></li>
+            <li><a href="javascript:void(0);" [routerLink]="['/privacy']">Privacy </a></li>
+            <li><a href="javascript:void(0);" [routerLink]="['/terms']">Terms Of Use</a></li>
             <li><a href="javascript:void(0);">Track Orders</a></li>
             <li><a href="javascript:void(0);">Shipping</a></li>
             <li><a href="javascript:void(0);">Cancellation</a></li>
-            <li><a href="javascript:void(0);">Returns</a></li>
+            <li><a href="javascript:void(0);" [routerLink]="['/return']" >Returns</a></li>
+            <li><a href="javascript:void(0);" [routerLink]="['/vendor']" >Vendor Sign Up</a></li>
           </ul>
         </div>
       </div>

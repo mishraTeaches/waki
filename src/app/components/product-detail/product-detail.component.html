@@ -1,3 +1,181 @@
-<p>
-  product-detail works!
-</p>
+
+  <!--Header Section Start Here-->
+  <!--Header Section End Here-->
+  <!--Product Details Section Start Here-->
+  <div class="midConwrap">
+    <div class="productlistingwrap">
+      <!--Waki Products Information Start Here-->
+      <div class="wakiproductdetails">
+        <div class="clearfix">
+          <div class="product-image">
+                <div class="proImgWrap">
+                        <div class="exzoom hidden" id="exzoom">
+                          <div class="exzoom_img_box">
+                            <ul class='exzoom_img_ul'>
+                              <li *ngFor="let pic of productdetail['product']['image']">
+                                <img  [src]="pic"/>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="exzoom_nav"></div>
+                          <p class="exzoom_btn">
+                            <a href="javascript:void(0);" class="exzoom_prev_btn" *ngIf="images.length > 5">
+                              <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="exzoom_next_btn">
+                              <i class="fa fa-angle-right" aria-hidden="true" *ngIf="images.length > 5"></i>
+                             </a>
+                          </p>
+                        </div>
+                      </div>
+          </div>
+
+          <div class="wakiproductinfowrap">
+            <h1>{{products.productName}}</h1>
+            <h3>{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}} {{products.price*currencyConvertService.currentCurrencyData['value']}} {{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</h3>
+            <div class="buynwrw">
+              <a href="javascript:void(0);" (click)="buyNow()">Buy Now</a>
+            </div>
+            <div class="wakiproinfo">
+              <div class="infoprorw">
+                 <span class="title">Material :</span>
+                 <span class="proinfos" *ngFor="let material of products['material'];let isLast=last">{{material}}{{isLast ? '' : ', '}} </span>&nbsp;&nbsp;
+                 <span class="title">Color :</span>
+                  <span class="proinfos" *ngFor="let color of products['colors'];let isLast=last">{{color}}{{isLast ? '' : ', '}}</span>
+                </div>
+              <div class="infoprorw">
+                <span class="title">Item Size :</span>
+                <span class="proinfos" *ngFor="let size of products['size'];let isLast=last">{{size}}{{isLast ? '' : ', '}}</span>
+              </div>
+              <div class="wakiprodes">
+                <p [innerHtml]="products['description'] | readMore:isReadeMore:productDesReadMoreLength"></p>
+              </div>
+              <div class="view-desc" (click)="readeMore()"  *ngIf = "isReadeMore" >
+                <a href="javascript:void(0)">View Full Description</a>
+              </div>
+            <div class="view-desc" (click)="readeMore()"  *ngIf = "!isReadeMore" >
+              <a href="javascript:void(0)">View Less Description</a></div>
+          </div>
+            <div class="wakipro_varientbx changevar" *ngIf="products['size'].length > 0">
+              <h4 class="varano">Variant Size </h4>
+              <div class="choose_varientrw">
+                <span *ngFor="let sizeValue of products['size'];let innerindex=index">
+                <input type="radio" id="s_size{{innerindex}}" [value]="sizeValue"  (change)="radioChangeHandler($event)"  name="radio-group" >
+                <label for="s_size{{innerindex}}"><i>{{sizeValue}}</i></label>
+                </span>
+
+              </div>
+            </div>
+            <div class="wakipro_varientbx changevar" *ngIf="products['colors'].length > 0">
+              <h4 class="varano">VARIANT Color </h4>
+              <div class="choose_varientrw">
+                 <span *ngFor="let color of products['colors'];let indexx=index">
+                <input type="radio" id="red_color{{indexx}}" [value]="color" (change)="radioColorHandler($event)" name="radio-group1">
+                <label for="red_color{{indexx}}"><i>{{color}}</i></label>
+                </span>
+               </div>
+            </div>
+
+            <div class="wakipro_varientbx changevar" *ngIf="products['material'].length > 0">
+                <h4 class="varano">VARIANT Material</h4>
+                <div class="choose_varientrw">
+                   <span *ngFor="let material of products['material'];let indexx=index">
+                  <input type="radio" id="metal{{indexx}}" [value]="material" (change)="radioMaterialHandler($event)" name="radio-group2">
+                  <label for="metal{{indexx}}"><i>{{material}}</i></label>
+                  </span>
+                 </div>
+              </div>
+
+            <div class="waki_addprobtnrow">
+               <a *ngIf="!gotocart" href="javascript:void(0);" class="add-to-bag" (click)="addtocart()" >add to bag</a>
+               <a *ngIf="gotocart" href="javascript:void(0);" class="add-to-bag" [routerLink]="['/cart']" >go to bag</a>
+              <a href="javascript:void(0);" *ngIf="!gotowishlist" class="add-to-whislist" (click)="addtowishlist()">add to wishlist</a>
+              <a href="javascript:void(0);"  *ngIf="gotowishlist" class="add-to-whislist" [routerLink]="['/stores']">go to wishlist</a>
+             </div>
+          </div>
+
+        </div>
+      </div>
+      <!--Waki Products Information End Here-->
+
+      <!--Waki Products Sold By Section Start-->
+      <div class="wakiproductdetails pd15wd" >
+            <div class="wakiproheading">SOLD BY</div>
+            <div class="soldbyrow clearfix">
+                <div class="soldbyimgbx">
+                  <img [src]="sellerinfo.selllerImage" alt="" /></div>
+                <div class="soldinfo">
+                    <h4>{{sellerinfo.sellerName}}</h4>
+                    <div class="starrow soldby">
+                        <custum-bar-rating  *ngIf="sellerinfo.selllerRating==0" [ratingCount] = "0" [max] = "5"></custum-bar-rating>
+                        <custum-bar-rating  *ngIf="sellerinfo.selllerRating > 0" [ratingCount] = "sellerinfo.selllerRating" [max] = 5></custum-bar-rating>
+                      </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)"><div class="viewalls">View all</div></a>
+      </div>
+      <!--Waki Products Sold By Section End-->
+
+      <!--Products Review And Rating Start Section-->
+      <div class="wakiproductdetails pd15wd">
+        <div class="wakiproheading">REVIEWS & RATINGS <a href="javascript:void(0)">
+          <span class="viewall">View all</span></a>
+        </div>
+
+        <div class="reviewratingConbx">
+          <div class="row fivemar clearfix">
+            <div class="col-sm-6 col-md-4 fivepad" *ngFor="let rating of ratingandreview">
+              <div class="reviewfeedbackbox">
+                <div class="orderfeedbackbox">
+                  <div class="orderidrows">
+                    <div class="row clearfix">
+                      <div class="col-lg-8">
+                        <div class="orderusrimgbx"><img [src]="rating.image" alt="" /></div>
+                        <div class="reviewownernm">{{rating.firstName}}</div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="starrow">
+                          <custum-bar-rating *ngIf="rating.rating==0" [ratingCount] = "0" [max] = "5"></custum-bar-rating>
+                          <custum-bar-rating *ngIf="rating.rating > 0" [ratingCount] = "rating.rating" [max] = 5></custum-bar-rating>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="reviewsminfo">{{rating.review}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="ratingandreview.length == 0">No Reviews Found</ng-container>
+          </div>
+        </div>
+      </div>
+      <!--Products Review And Rating End Section-->
+
+      <!--Similar Products Section Start Here-->
+      <div class="toppicswrap products_details pd15wd">
+        <div class="wakiproheading">SIMILAR PRODUCTS</div>
+        <div class="topitemsproductsSlbx owl-carousel toppics owl-theme" >
+            <ng-container *ngIf="similarproduct.length ==0">Similar Product Not Found</ng-container>
+          <div class="item clearfix" *ngFor="let similar of similarproduct  ">
+            <div class="itembox" [routerLink]="['/detail',similar._id]" style="cursor: pointer">
+              <div class="itemimgbx">
+                <img [src]="similar.image" width="200" height="400" alt="" />
+              </div>
+              <div class="itemdetailsbx">
+                <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}} {{similar.price*currencyConvertService.currentCurrencyData['value']}} {{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
+                <h4>{{similar.productName}}</h4>
+                <div class="bdrrw clearfix">
+                  <span class="top_bottom_bdr"></span></div>
+                <div class="itemcomnm">{{similar.brand}}</div>
+                <div class="itemsmdes" [innerHtml]="similar.description" ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!--SSimilar Products Section End Here-->
+
+    </div>
+  </div>
+  <!--Product Details Section End Here-->
+

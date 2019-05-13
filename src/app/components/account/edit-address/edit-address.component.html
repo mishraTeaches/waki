@@ -1,0 +1,104 @@
+<div class="midConwrap">
+    <div class="profileSectionwrap">
+      <div class="profileheading_row">
+        <h3>Edit  Profile</h3>
+      </div>
+      <div class="profiletabsConWrap">
+
+        <!--Tabs Details Start Here-->
+        <div class="tabsdetailswrap">
+
+              <!--Saved Address Content Start Here-->
+              <div class="savedaddresswrap editprofile">
+                <!--Add New Address Section Box Start Here-->
+                <div class="addnewaddressbtnrw">
+                  <div class="add_address_formbx edit_profile">
+                    <div class="row clearfix">
+                      <div class="col-sm-6">
+                        <div class="viewmapsbx">
+                            <div class="viewmapsbx">
+                                <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                                    <agm-marker [latitude]="latitude" [longitude]="longitude">
+                                    </agm-marker>
+                                  </agm-map>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <form #saveform = "ngForm" (ngSubmit)="editAddress(saveform.valid)" novalidate>
+                          <div class="addressfillform">
+                              <div class="form-group">
+                                  <label>Name</label>
+                                  <input class="form-control" name="name" type="text" #name = "ngModel" [(ngModel)]="addressObj['fullName']" type="text" pattern = "^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$" required placeholder="Enter your name"/>
+                                  <div class="field-error" *ngIf="name.errors">
+                                    <p class="field-error" *ngIf="name['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                                    <p class="field-error" *ngIf="name['errors']['pattern'] && isFormSubmit">Please fill full name  </p>
+                                  </div>
+                                </div>
+
+                            <div class="form-group">
+                              <label>Address</label>
+                              <input class="form-control" name="addr" type="text" #addr = "ngModel" [(ngModel)]="addressObj['addresses']" placeholder="56 D Block, Sector 110, Noida 201301" #search autocorrect="off" autocapitalize="off" spellcheck="off" required  >
+                              <div class="field-error" *ngIf="addr.errors">
+                                <p class="field-error" *ngIf="addr['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                                <!-- <p class="field-error" *ngIf="addr['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <label>House/Flat No.</label>
+                                <input class="form-control" name="house_flat" type="text" #house_flat = "ngModel" [(ngModel)]="addressObj['houseNo']" type="text" required placeholder="V 456"/>
+                                <div class="field-error" *ngIf="house_flat.errors">
+                                  <p class="field-error" *ngIf="house_flat['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                                  <!-- <p class="field-error" *ngIf="house_flat['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label>Contact No.</label>
+                                  <input class="form-control" name="contact" type="text" #contact = "ngModel" [(ngModel)]="addressObj['contactNumber']" type="text" minlength="6" maxlength="16" autocomplete="off" required onkeypress='return (event.which > 47 && event.which <= 57) || event.which == 8 || event.which == 46' placeholder="Enter your contact number"/>
+                                  <div class="field-error" *ngIf="contact.errors">
+                                    <p class="field-error" *ngIf="contact['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                                    <p class="field-error" *ngIf="contact['errors']['minlength'] && isFormSubmit">This field is Invalid</p>
+                                    <p class="field-error" *ngIf="contact['errors']['maxlength'] && isFormSubmit">This field is Invalid</p>
+                                    <!-- <p class="field-error" *ngIf="contact['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                                  </div>
+                                </div>
+                              <div class="form-group clearfix">
+                                  <label>Save As</label>
+                                  <div class="saveastype">
+                              <input type="radio" id="worktype" name="radiogroup" value="work" #radiogroup="ngModel" [checked]="addressObj['addressType']=='work'" [ngModel]="addressObj['addressType']" required (ngModelChange)="radioSelected('work')">
+                               <label for="worktype">
+                                 <span class="bullets_points_save"></span>Work</label>
+                                  </div>
+                                  <div class="saveastype">
+                                      <input type="radio" id="hometype" name="radiogroup" value="home" #radiogroup="ngModel" [checked]="addressObj['addressType']=='home'" [ngModel]="addressObj['addressType']" required (ngModelChange)="radioSelected('home')">
+                                      <label for="hometype"><span class="bullets_points_save"></span>Home</label>
+                                  </div>
+                                  <div class="saveastype">
+                                      <input type="radio" id="othrtype" name="radiogroup" value="other" #radiogroup="ngModel" [checked]="addressObj['addressType']=='other'" [ngModel]="addressObj['addressType']" required (ngModelChange)="radioSelected('other')">
+                                      <label for="othrtype"><span class="bullets_points_save"></span>Others</label>
+                                  </div>
+                                  <div class="field-error" *ngIf="radiogroup.errors">
+                                    <p class="field-error" *ngIf="radiogroup['errors']['required'] && isFormSubmit">This field is Requrired</p>
+                                    <!-- <p class="field-error" *ngIf="contact['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
+                                  </div>
+                                </div>
+
+                                <div class="form-group saveadd_subbtnrw">
+                                    <button type="submit" class="btn btn-primary">Update Address</button>
+                                </div>
+
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Add New Address Section Box End Here-->
+              </div>
+              <!--Saved Address Content End Here-->
+
+        </div>
+
+      </div>
+    </div>
+  </div>

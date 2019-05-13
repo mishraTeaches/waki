@@ -1,1 +1,82 @@
-<h3>Hello I am Payment</h3>
+
+    <div class="tab-content">
+      <!--My Payment Method Start Here-->
+      <div id="my_payment_method" class="tab-pane fade in active">
+        <div class="profile_banner">
+          <h3>{{social['firstName']}}</h3>
+          <h4>Welcome to Payment</h4>
+          <h2 class="email">{{social['email']}}</h2>
+          <h2 class="mobilenum">{{social['countryCode']}} | {{social['phone']}}</h2>
+          <span class="hichaticon"></span> </div>
+        <!--Payment Method Content Start Here-->
+        <div class="mypayment_methodwrap">
+          <div class="row payment_method clearfix">
+            <div class="col-sm-6 payment_method_pad">
+              <div class="delivereddetailsbox bagtotal">
+                <div class="shippedbox">
+                  <h3>PAYMENT OPTIONS</h3>
+                  <div class="payment_methodbx">
+                    <div class="paymentmetrow">
+                      <input type="radio" id="paymentcard1" name="radio-group" checked="">
+                      <label for="paymentcard1"> <span class="payment_type_img"><img src="assets/images/visa_pay.png" alt=""></span> <span class="cardnumberbx">XXXX-XXXX-XXXX-4443</span> <span class="choosetype_bullets"></span> </label>
+                    </div>
+                    <div class="paymentmetrow">
+                      <input type="radio" id="paymentcard2" name="radio-group">
+                      <label for="paymentcard2"> <span class="payment_type_img"><img src="assets/images/visa_pay.png" alt=""></span> <span class="cardnumberbx">XXXX-XXXX-XXXX-4443</span> <span class="choosetype_bullets"></span> </label>
+                    </div>
+                    <div class="paymentmetrow">
+                      <input type="radio" id="paymentcod" name="radio-group">
+                      <label for="paymentcod">Pay Via COD <span class="choosetype_bullets"></span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 payment_method_pad">
+              <div class="atmcardbox">
+                <div class="cardContentbx">
+                  <div class="cardidmgbxrw">
+                    <div class="cardidimg"></div>
+                  </div>
+                  <div class="cardnumrw">
+                    <div class="row clearfix">
+                      <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="xxxx" id="first" size="4" onkeyup="movetoNext(this, 'second')" maxlength="4">
+                      </div>
+                      <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="xxxx" id="second" size="4" onkeyup="movetoNext(this, 'third')" maxlength="4">
+                      </div>
+                      <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="xxxx" id="third" size="4" onkeyup="movetoNext(this, 'fourth')" maxlength="4">
+                      </div>
+                      <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="xxxx" id="fourth" size="4" maxlength="4">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ccv_numrw">
+                    <input type="text" class="form-control" placeholder="xxxx">
+                  </div>
+                  <div class="validthrurw">
+                    <div class="valid_text">VALID<span>THRU</span><span class="valid_arr"></span></div>
+                    <div class="validinput">
+                      <input type="text" class="form-control" placeholder="01">
+                      <span class="span_slash">/&nbsp;</span>
+                      <input type="text" class="form-control" placeholder="20">
+                    </div>
+                  </div>
+                  <div class="cardownernm">
+                    <input type="text" class="form-control" placeholder="Card Holder">
+                  </div>
+                </div>
+                <div class="paymenticonrw"><img src="assets/images/amazon_pay.png" alt=""> <img src="assets/images/paypal.png" alt=""></div>
+                <div class="addpaymentlinkrw"><a href="javascript:void(0);">Add new payment method</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Payment Method Content End Here-->
+      </div>
+      <!--My Payment Method Start Here-->
+
+    </div>

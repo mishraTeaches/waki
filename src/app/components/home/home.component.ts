@@ -1,18 +1,21 @@
-import { Component,ElementRef,HostListener} from '@angular/core';
+import { Component,ElementRef,HostListener, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import {appConstant} from '../../constant/app.constant';
 import {WakiServiceService} from '../../service/waki-service.service';
 import {CurrencyconvertService} from '../../provider/currencyconvert.service';
 import { ChangeLangService } from 'src/app/provider/change-lang.service';
 import {GlobalService} from '../../provider/global.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ToastrService } from 'ngx-toastr';
+import { flatMap } from 'rxjs/operators';
 declare var $:any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent{
+export class HomeComponent implements AfterViewInit{
   baseUrl=appConstant['baseUrl'];
-  homedata:any;
+  homedata:any={};
   banner:any=[];
   // @ViewChild('categoriesTypesProduct') categoriesTypesProduct:any;
   slideIndex:number = 0;
@@ -29,7 +32,8 @@ export class HomeComponent{
        categoriesData:Array<any> = [];
        pagNo:number = 1;
   // categoryTypesData:any = {};
-  constructor(private global:GlobalService,private wakiservice:WakiServiceService,private element: ElementRef,private currencyConvertService:CurrencyconvertService,private languageTranslateInfoService:ChangeLangService) 
+// tslint:disable-next-line: max-line-length
+  constructor(private cd: ChangeDetectorRef,private toastr: ToastrService,private ngxService: NgxUiLoaderService,private global:GlobalService,private wakiservice:WakiServiceService,private element: ElementRef,private currencyConvertService:CurrencyconvertService,private languageTranslateInfoService:ChangeLangService)
   {
     languageTranslateInfoService.translateInfo.subscribe((data) => {
         if(data){
@@ -39,30 +43,28 @@ export class HomeComponent{
          });
          $("html, body").animate({ scrollTop: 0 }, "slow");
    }
-   @HostListener('window:scroll', ['$event']) 
-   dotheJob(event) {
-     this.global.lazyLoad();
-   }
+//    @HostListener('window:scroll', ['$event'])
+//    dotheJob(event) {
+//      this.global.lazyLoad();
+//    }
   loadHomeData()
    {
+     this.ngxService.start();
     let URL = appConstant.baseUrl+`vendor/homeScreenAPi?lang=${this.currentLanguageData['lng_code']}`;
-    this.wakiservice.createGetRequest(URL).subscribe((response: any) => {
-      if(response['statusCode'] == 200)
+    this.wakiservice.createGetRequest(URL,0).subscribe((response: any) => {
+      if(response['statusCode'] === 200)
       {
-        console.log(response.result)
-         
-          this.homedata = response['result'];
-          this.addNewBlock('event');
+        this.ngxService.stop();
+        this.homedata = response['result'];
         this.topPromotedDeals=this.homedata['Top Promoted Deals'];
        this.banner=this.homedata['Top Deals'];
        this.topPicksMobile=this.homedata['Top Picks in Mobile'];
        this.topBrands=this.homedata['Brand'];
        this.topPicksFashion=this.homedata['Top Picks in Fashion'];
-
       }
        // alert(1)
     });
-      
+
       }
       loadCaraousel(){
         $('#bannerslider').owlCarousel({
@@ -108,10 +110,61 @@ export class HomeComponent{
           }
       });
       }
-      mobileslider(){
+      collectionslider(){
+        $('.colectionSlider').owlCarousel({
+          loop: true,
+          margin: 5,
+          nav: false,
+          dots: true,
+          autoplay: true,
+          animateOut: 'slideOutUp',
+          animateIn: 'slideInUp',
+          responsive: {
+              0: {
+                  items: 1
+              },
+              768: {
+                  items: 1
+              },
+              1024: {
+                  items: 1
+              }
+          }
+      });
+      }
+      trending(){
+        $('.trendingfahion').owlCarousel({
+          loop: true,
+          margin: 10,
+          nav: false,
+          dots: false,
+          autoplay: false,
+          responsive: {
+              0: {
+                  items: 1
+              },
+              480: {
+                  items: 2
+              },
+              580: {
+                  items: 3
+              },
+              639: {
+                  items: 4
+              },
+              768: {
+                  items: 5
+              },
+              1024: {
+                  items: 5
+              }
+          }
+      });
+      }
+      mobileslider() {
         $('.topitemsproductsSlbx').owlCarousel({
           loop: true,
-          // margin: 25,
+          margin: 25,
           nav: false,
           dots: true,
           autoplay: false,
@@ -135,19 +188,29 @@ export class HomeComponent{
       });
       }
       ngAfterViewInit(){
+        // this.ngxService.start();
         setTimeout(()=>{
+            // this.ngxService.stop();
           this.topBrandsSlider(),
           this.loadCaraousel(),
           this.mobileslider();
-        },1000);
-      
+          this.collectionslider();
+          this.trending();
+        },3000);
+        this.cd.detectChanges();
+
       }
-      addNewBlock(event){
-        if(this.homedata.length == this.homeCategory.length)
-          this.isLoader = false;
-      if(this.homedata.length > this.homeCategory.length){
-        this.homeCategory.push(this.homedata[this.homeCategory.length]);  
-      }
-    }
+    //   addNewBlock(event)
+    //   {
+    //     if(this.homedata['Category'].length === this.homeCategory.length){
+    //       this.isLoader = false;
+    //       alert("equal")
+    //     }
+    //   if(this.homedata.length > this.homeCategory.length)
+    //   {
+    //     alert("not")
+    //     this.homeCategory.push(this.homedata[this.homeCategory.length]);
+    //   }
+    // }
 
 }

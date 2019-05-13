@@ -9,9 +9,11 @@ import {ToastrService } from 'ngx-toastr';
 export class AccountGuard implements CanActivate {
   constructor(private router:Router,private toastr: ToastrService){}
   canActivate(next: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(localStorage.getItem("userLoginDetail") || localStorage.getItem("sociallogin"))
+    if(localStorage.getItem("userLoginDetail") || localStorage.getItem("register") || localStorage.getItem("sociallogin")){
     return true;
-    else{
+    }
+    else {
+      this.toastr.error("Please Login First");
       this.router.navigate(['/login']);
       return false;
     }

@@ -5,6 +5,7 @@ import { WakiServiceService } from 'src/app/service/waki-service.service';
 import { ChangeLangService } from 'src/app/provider/change-lang.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyconvertService } from 'src/app/provider/currencyconvert.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -22,10 +23,9 @@ export class ProductListComponent {
   myVar1:boolean=false;
   params:any;
   noProductFound:boolean=false;
-  constructor(private currencyConvertService:CurrencyconvertService,private router:Router,private wakiservice:WakiServiceService,private route: ActivatedRoute,private languageTranslateInfoService:ChangeLangService) { 
+  constructor(private list:NgxUiLoaderService,private currencyConvertService:CurrencyconvertService,private router:Router,private wakiservice:WakiServiceService,private route: ActivatedRoute,private languageTranslateInfoService:ChangeLangService) {
     this.loadFilter();
     this.param1 = this.route.snapshot.params.id;
-    console.log(this.param1);
     this.route.queryParams
       .subscribe(params => {
         this.params=params['type'];
@@ -41,6 +41,7 @@ export class ProductListComponent {
   }
   loadProductList()
    {
+     this.list.start();
     let URL = appConstant.baseUrl+'vendor/categoryProductList';
     if(this.params=='brand'){
       this.dataa={"lang":this.currentLanguageData['lng_code'],"productListType":"brand","productCategoryId":this.param1}
@@ -48,24 +49,26 @@ export class ProductListComponent {
     else{
     this.dataa={"lang":this.currentLanguageData['lng_code'],"productCategoryId":this.param1}
     }
-    this.wakiservice.createPostRequest(URL,this.dataa).subscribe((response: any) => {
+    this.wakiservice.createPostRequest(URL,this.dataa,0).subscribe((response: any) => {
       console.log(response);
       if(response['statusCode'] == 200)
       {
+        this.list.stop();
         this.prodList=response['result'];
       }
       else if(response['statusCode']==404){
+        this.list.stop()
       this.noProductMessage=response['statusMessage'];
       }
-      
+
     });
-      
+
       }
 
       loadFilter(){
         let URL = appConstant.baseUrl+'vendor/filter';
     this.dataa={"lang":this.currentLanguageData['lng_code'],"productCategoryId":this.param1}
-    this.wakiservice.createPostRequest(URL,this.dataa).subscribe((response: any) => {
+    this.wakiservice.createPostRequest(URL,this.dataa,0).subscribe((response: any) => {
       if(response['statusCode'] == 200)
       {
         this.filterlist=response['result'][0]['sub_filter'];
@@ -73,9 +76,9 @@ export class ProductListComponent {
       else if(response['statusCode']==404){
       console.log("message");
       }
-      
+
     });
-      
+
       }
       selecting(id,name,event){
         if(this.params=='brand')

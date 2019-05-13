@@ -2,6 +2,9 @@
 .trendingfashionbx .trendingbx figure {
 	height:335px;
 }
+.navbar-default span.leftColorbg,.navbar-default span.rightColorbg{
+	width: 60px;
+}
 }
 @media only screen and (max-width: 1800px) {
 .nav.fullwdmenu > li > a {
@@ -83,6 +86,37 @@
 .profile_banner{
 	padding: 60px 35px;
 }
+.contactus_scwrap .contacttitle_heading img {
+    width: 320px;
+    height: auto;
+}
+.contactus_scwrap .contactinfos,.contactus_scwrap .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    font-size: 16px;
+    line-height: 32px;
+}
+.contact_towakirw .emaillink,.wakiConAddressbox{
+	font-size: 16px;
+}
+.contactus_scwrap .conwakiConbx {
+    max-width: 700px;
+}
+.contactus_scwrap {
+    padding: 60px 20px 120px 20px;
+}
+.contactus_scwrap .panel-title {
+    font-size: 18px;
+}
+.termsContentwrap h3{
+	font-size: 21px;
+	line-height: 32px;
+}
+.termsContentwrap h4{
+	font-size: 16px;
+}
+.termsContentwrap .termstextdetails{
+	font-size: 16px;
+	line-height: 32px;
+}
 }
 @media only screen and (max-width: 1600px) {
 .nav.fullwdmenu > li > a {
@@ -116,7 +150,7 @@
 	font-size: 40px;
 }
 .collectionslideCon h3 span, .collectionslideCon h2{
-	font-size: 80px;
+	font-size: 75px;
 }
 .collectionslideCon h4{
 	font-size: 24px;
@@ -184,10 +218,7 @@
 	font-size: 14px;
 }
 .orderid_detailsbx .orderidnum{
-	font-size: 13px;
-}
-.orderid_detailsbx{
-	padding-right: 140px;
+	font-size: 12px;
 }
 .totalpaidrw .totalsheading, .totalpaidrw .aedpricebx,.paidvia{
 	font-size: 16px;
@@ -207,10 +238,22 @@
 .profiletabsConWrap .nav-tabs > li > a{
 	padding: 16px 30px;
 }
+.wakiproductinfowrap h1{
+	font-size: 28px;
+}
+.wakiproductinfowrap h3{
+	font-size: 21px;
+}
+.wakiproinfo .infoprorw, .wakiproinfo .wakiprodes,.wakiproductinfowrap .view-desc,.reviewsminfo {
+    font-size: 14px;
+}
+.reviewsminfo{
+	margin-top: 5px;
+}
 }
 @media only screen and (max-width: 1440px) {
 .nav.fullwdmenu > li > a {
-	padding: 12px 22px;
+  padding: 12px 18px;
 }
 .trendingfashionbx .trendingbx figure {
     height: 240px;
@@ -257,6 +300,10 @@
     padding: 27px 15px;
     font-size: 18px;
 }
+.collectiontabs.active .tabCon{
+	color: #fff;
+	background-color: #25d7ea;
+}
 .collectiontabs {
     height: 105px;
 }
@@ -282,11 +329,27 @@
 .toppicswrap.productlisting .productlistbox {
     width: 25%;
 }
+.toppicswrap.productlisting.watchlist .productlistbox{
+	width: 20%;
+}
 .wdp5.wds20{
 	width: 20%;
 }
 .wdp5.wds80{
 	width: 80%;
+}
+.starrow .glyphicon{
+	font-size: 15px;
+}
+.accountsetheaderrw .aciconbx {
+    width: 70px;
+    height: 70px;
+}
+.accountsetheaderrw .boxtitlenm {
+    line-height: 70px;
+}
+.changepassordform .form-control {
+    font-size: 14px;
 }
 }
 
@@ -300,6 +363,9 @@
 .lastprorows figure.smbx {
 	height: 244px;
 }
+.changepassordform .subbtnrw .btn-primary {
+    width: 120px;
+}
 }
 
 @media only screen and (max-width: 1320px) {
@@ -311,7 +377,7 @@
 	padding: 40px 40px 0px 40px;
 }
 .nav.fullwdmenu > li > a {
-	padding: 12px 18px;
+  padding: 12px;
 }
 .navbar-default span.leftColorbg,.navbar-default span.rightColorbg {
     width: 40px;
@@ -427,6 +493,88 @@
 .subcategories-banner,.subcategories-details .product-subcategory{
 	margin-bottom: 30px;
 }
+.wakiproductinfowrap h1 {
+	font-size: 24px;
+	line-height: 36px;
+}
+.viewalls,.wakiproheading .viewall{
+	font-size: 18px;
+}
+.wakipro_varientbx h4{
+	font-size: 16px;
+}
+.wakipro_varientbx [type="radio"]:checked + label, .wakipro_varientbx [type="radio"]:not(:checked) + label {
+	font-size: 14px;
+}
+.starrow .glyphicon {
+    font-size: 13px;
+}
+.wakiproductinfowrap .buynwrw a,.waki_addprobtnrow .add-to-bag, .waki_addprobtnrow .add-to-whislist{
+	padding: 12px 36px;
+}
+.delivereddetailsbox.bagtotal h3{
+	font-size: 18px;
+}
+.orderid_detailsbx.checkout .aedprice{
+	font-size: 21px;
+}
+.payment_methodbx [type="radio"]:checked + label, .payment_methodbx [type="radio"]:not(:checked) + label {
+	font-size: 20px;
+}
+.cardnumberbx{
+	margin-left: 15px;
+}
+.movewishlistrw a{
+	font-size: 16px;
+}
+.wakicheckoutprobx{
+	padding: 20px;
+}
+.delivereddetailsbox.bagtotal {
+	padding: 20px 20px 10px 20px;
+}
+.atmcardbox{
+	padding: 30px 40px;
+}
+.addnewaddressbtnrw .addnewaddressbtn{
+	padding: 12px 40px;
+}
+.saveadd_subbtnrw .btn-primary{
+	padding: 12px 60px;
+}
+.contactus_scwrap .conwakiConbx {
+    max-width: 600px;
+}
+.contactus_scwrap .contactinfos,.contactus_scwrap .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    font-size: 14px;
+    line-height: 28px;
+}
+.contact_towakirw .emaillink, .wakiConAddressbox {
+    font-size: 14px;
+}
+.wakiConAddressbox p {
+    margin-bottom: 10px;
+}
+.contactus_scwrap .panel-title {
+    font-size: 16px;
+}
+.termsContentwrap h3{
+	font-size: 18px;
+	line-height: 28px;
+}
+.termsContentwrap h4{
+	font-size: 15px;
+}
+.termsContentwrap .termstextdetails{
+	font-size: 14px;
+	line-height: 28px;
+}
+.termsContentwrap{
+	padding: 15px;
+}
+.changepassordform .subbtnrw .btn-primary {
+    width: 110px;
+}
 }
 @media only screen and (max-width: 1220px) {
 #wrapper{
@@ -435,9 +583,6 @@
 }
 .navbar-default {
 	padding: 30px 30px 0px 30px;
-}
-.nav.fullwdmenu > li > a {
-    padding: 12px 16px;
 }
 .navbar-default span.leftColorbg,.navbar-default span.rightColorbg {
 	width: 30px;
@@ -510,6 +655,35 @@
 .shippedbox .addressbox h5 {
     font-size: 16px;
 }
+.wakiproheading {
+    font-size: 21px;
+}
+.changeshippingaddtext{
+	position: static;
+	bottom: auto;
+	right: auto;
+	margin-top: 15px;
+	text-align: right;
+}
+.delivereddetailsbox.bagtotal .shippedbox .addressbox{
+	padding: 10px;
+	margin-top: 0px;
+}
+.accountsetheaderrw .aciconbx {
+    width: 60px;
+    height: 60px;
+}
+.accountsetheaderrw .boxtitlenm {
+    line-height: 60px;
+}
+.accountsetheaderrw .boxtitlenm{
+	font-size: 16px;
+}
+.changepassordform .subbtnrw .btn-primary {
+    width: 100px;
+    font-size: 14px;
+    padding: 10px 8px;
+}
 }
 @media only screen and (max-width: 1200px) {
 .trendingfashionbx .trendingbx figure {
@@ -520,6 +694,22 @@
 }
 .lastprorows figure.smbx {
     height: 215px;
+}
+.product-image {
+    width: 460px;
+}
+.wakiproductinfowrap {
+    margin-left: 500px;
+    padding-right: 0px;
+}
+.wakiproductdetails{
+	padding: 20px;
+}
+.starrow{
+	text-align: left;
+}
+.accountstaffwtbx {
+    padding: 15px;
 }
 }
 @media only screen and (max-width: 1170px) {
@@ -538,7 +728,7 @@
 }
 .nav.fullwdmenu > li > a{
 	font-size: 13px;
-	padding: 12px 14px;
+     padding: 12px 10px;
 }
 .nav.fullwdmenu .dropdown-menu > li > a{
 	font-size: 13px;
@@ -655,6 +845,9 @@
 .toppicswrap.productlisting .productlistbox {
     width: 33.33%;
 }
+.toppicswrap.productlisting.watchlist .productlistbox {
+    width: 25%;
+}
 .wdp5.wds20 {
     width: 23%;
 }
@@ -663,6 +856,23 @@
 }
 .toppicswrap.productlisting {
     padding: 20px;
+}
+.toppicswrap.watchlist{
+	padding: 0;
+}
+.wakiproheading{
+	font-size: 20px;
+}
+.atmcardbox{
+	padding: 25px 30px;
+}
+.contactus_scwrap .conwakiConbx {
+    max-width: 500px;
+}
+.changepassordform .subbtnrw .btn-primary {
+    width: 80px;
+    font-size: 14px;
+    padding: 10px 0px;
 }
 }
 
@@ -676,8 +886,16 @@
 .lastprorows figure.smbx {
     height: 190px;
 }
+.product-image {
+    width: 300px;
 }
-
+.wakiproductinfowrap {
+    margin-left: 330px;
+}
+.nav.fullwdmenu > li > a{
+     padding: 12px 7px;
+}
+}
 @media only screen and (max-width: 1023px) {
 .navbar-default {
 	padding: 10px 10px 0px 10px;
@@ -693,11 +911,11 @@
     width: 10px;
 }
 .nav.fullwdmenu > li > a {
-    font-size: 12px;
-    padding: 12px 7px;
+    font-size: 11px;
+    padding: 12px 5px;
 }
 .nav.fullwdmenu .dropdown-menu > li > a{
-	font-size: 12px;
+	font-size: 11px;
 }
 .logorw .navbar-nav > li > a span{
 	width: 24px;
@@ -733,7 +951,7 @@
     height: 120px;
 }
 .trendingfashionbx .marginwd8{
-	margin: 0 -5px;
+	margin: 0;
 }
 .trendingfashionbx .colwd{
 	padding: 0 5px;
@@ -868,6 +1086,9 @@
 .toppicswrap.productlisting .productlistbox {
     width: 50%;
 }
+.toppicswrap.productlisting.watchlist .productlistbox {
+    width: 33.33%;
+}
 .profileheading_row h3{
 	font-size: 15px;
 }
@@ -890,11 +1111,63 @@
 .orderlistContent .orderidprobox{
 	min-height: inherit;
 }
+.wakiproductinfowrap h1 {
+    font-size: 21px;
+	line-height: 32px;
+	margin-top: 5px;
+}
+.wakiproinfo .infoprorw, .wakiproinfo .wakiprodes,.wakiproinfo .wakiprodes p{
+	margin-bottom: 10px;
+	word-wrap: break-word;
+}
+.wakiproductinfowrap .buynwrw a, .waki_addprobtnrow .add-to-bag, .waki_addprobtnrow .add-to-whislist {
+    padding: 12px 24px;
+}
+.payment_type_img img {
+    width: 40px;
+}
+.cardnumberbx{
+	margin-left: 10px;
+}
+.payment_methodbx [type="radio"]:checked + label, .payment_methodbx [type="radio"]:not(:checked) + label {
+	font-size: 15px;
+	line-height: 24px;
+	padding: 10px 8px;
+}
+.choosetype_bullets{
+	right:10px;
+}
+.atmcardbox {
+    padding: 20px;
+}
+.cardContentbx{
+	padding: 20px 15px 15px 15px;
+}
+.cardContentbx .form-control,.validthrurw .validinput .span_slash{
+	font-size: 18px;
+}
+.validthrurw .valid_text{
+	font-size: 12px;
+}
+.cardContentbx .cardidmgbxrw .cardidimg{
+	width: 60px;
+	height: 50px;
+}
+.row.payment_method{
+	margin: 0 -10px;
+}
+.payment_method_pad{
+	padding: 0 10px;
+}
+.contactus_scwrap {
+    padding: 60px 20px 120px 20px;
+    background-size: 600px 432px;
+}
 }
 
 @media only screen and (max-width: 839px) {
 .nav.fullwdmenu > li > a,.nav.fullwdmenu .dropdown-menu > li > a {
-	font-size: 11px;
+	font-size: 10px;
 }
 .trendingfashionbx .trendingbx figure {
     height: 140px;
@@ -926,11 +1199,11 @@
 	padding:0;
 	height: 60px;
 }
-.navbar-brand{
-	width: 100px;
-	height: 35px;
-	margin-left: -50px;
-	margin-top: -18px;
+.navbar-brand {
+    width: 80px;
+    height: 28px;
+    margin-left: -40px;
+    margin-top: -14px;
 }
 .navbar-nav {
 	position: absolute;
@@ -1127,6 +1400,9 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 .toppicswrap.productlisting,.wdp5.wds20 {
     margin: 0 5px;
 }
+.toppicswrap.productlisting.watchlist {
+	margin: 0 10px;
+}
 .category_subcategory_row{
 	margin: 0 10px;
 	margin-bottom: 10px;
@@ -1203,6 +1479,177 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 .totalpaidrw .totalsheading, .totalpaidrw .aedpricebx, .paidvia {
     font-size: 14px;
 }
+.reviewsminfo{
+	min-height: inherit;
+}
+.wakiproheading {
+    font-size: 18px;
+}
+.wakiproheading:after{
+	width: 60px;
+}
+.wakiproductdetails {
+	margin: 10px;
+	padding: 0;
+}
+.wakiproductdetails.pd15wd{
+	padding: 15px;
+}
+.product-image {
+	float: none;
+	width: auto;
+	margin: auto;
+	min-height: 300px;
+}
+.wakiproductinfowrap {
+	margin-left: 0;
+	padding: 15px;
+}
+.wakiproductinfowrap .buynwrw a, .waki_addprobtnrow .add-to-bag, .waki_addprobtnrow .add-to-whislist {
+    padding: 10px 12px;
+}
+.waki_addprobtnrow .add-to-bag, .waki_addprobtnrow .add-to-whislist{
+	margin-right: 5px;
+	letter-spacing: 0;
+}
+.viewalls, .wakiproheading .viewall {
+    font-size: 16px;
+}
+.viewalls{
+	top:30px;
+	right:15px;
+}
+.toppicswrap.products_details{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.toppicswrap.productlisting.watchlist .productlistbox {
+    width: 50%;
+}
+.row.checkout{
+	margin: 0 5px;
+}
+.wakicheckoutprobx{
+	margin-bottom: 10px;
+}
+.Checkout_heading_title{
+	margin: 0 10px;
+}
+.wakicheckoutprobx.orderlistContent .orderidproConwrap {
+    margin-bottom: 20px;
+}
+.addnewaddressbtnrw .addnewaddressbtn{
+	margin-bottom: 10px;
+}
+.addnewaddressbtnrw .addnewaddressbtn {
+	padding: 12px 30px;
+	font-size: 16px;
+}
+.saveadd_subbtnrw .btn-primary{
+	padding: 12px 50px;
+	font-size: 16px;
+}
+.addressfillform{
+	margin-top: 25px;
+}
+.savedaddresswrap{
+	padding: 20px;
+}
+.row.payment_method{
+	margin: 0;
+}
+.atmcardbox {
+    padding: 20px 15px;
+}
+.cardContentbx .cardidmgbxrw {
+    margin-bottom: 10px;
+}
+.savedaddresswrap.editprofile{
+	margin: 0 10px;
+	margin-bottom: 10px;
+}
+.contactus_scwrap{
+	background: #fff;
+	padding: 15px;
+}
+.contact_towakirw {
+    margin: 20px 0;
+}
+.contactus_scwrap .contacttitle_heading img {
+    width: 240px;
+    height: auto;
+}
+.contact_towakirw .wakilinkbx {
+    margin-right: 15px;
+}
+.contact_towakirw .emaillink{
+	margin-left: 10px;
+}
+.contactus_scwrap{
+	margin: 0 10px 10px 10px;
+}
+.contactus_scwrap.vendorwrap {
+    padding: 15px;
+}
+.vendorimgbx {
+    padding-top: 20px;
+    padding-left: 0;
+}
+.termsContentwrap{
+	margin: 0 10px;
+	margin-bottom: 10px;
+}
+#settings .row.tabCon{
+	margin: 0 5px;
+	margin-top: 10px;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    border-top:none;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    border-top:none;
+}
+.nav.fullwdmenu > li > a {
+    font-size: 14px;
+	padding: 10px;
+	border-bottom: 1px solid #f0f0f0;
+}
+.nav.fullwdmenu > li > .dropdown-menu{
+	padding: 0;
+	text-align: left;
+}
+.nav.fullwdmenu .dropdown-menu > li > a {
+    font-size:13px;
+}
+.navbar-default .navbar-toggle{
+	border: 0;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color:transparent;
+}
+.navbar-toggle{
+	margin-top: 11px;
+}
+.savedaddsbxrow .shippedbox .addressbox{
+	min-height: inherit;
+}
+#chooseAddress .modal-dialog{
+	width: 92%;
+}
+#chooseAddress .modal-body {
+    padding: 20px 20px 0 20px;
+}
+.logorw .navbar-nav > li > a > i.notif_num{
+	width: 20px;
+	height: 20px;
+	font-size: 11px;
+	right:-12px;
+	line-height: 20px;
+}
+.toppicswrap .itembox:hover .itemimgbx img{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
 }
 @media only screen and (max-width:639px) {
 .trendingfashionbx .colwd {
@@ -1227,6 +1674,23 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 .collectionslideCon .collectionchCon{
 	padding-right: 150px;
 }
+.bagtotalcheckoutbtnbx{
+	position: static;
+	top:auto;
+	right: auto;
+	text-align: center;
+}
+.Checkout_heading_title{
+	padding: 15px 10px 15px 10px;
+}
+.Checkout_heading_title h4{
+	text-align: center;
+	display: block;
+	margin-bottom: 15px;
+}
+.movewishlistrw a {
+    font-size: 15px;
+}
 }
 
 @media only screen and (max-width:580px) {
@@ -1246,6 +1710,12 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 	padding: 20px;
 	padding-right: 100px;
 }
+.bagtotalcheckoutbtnbx .checkoutbutton{
+	padding: 8px 16px;
+}
+.collectionsliderwarp .collectionbx img{
+	margin-top: 40px;
+}
 }
 
 @media only screen and (max-width:479px) {
@@ -1253,7 +1723,7 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 	width: auto;
 	float: none;
 }
-.trendingfashionbx .trendingbx figure {
+/* .trendingfashionbx .trendingbx figure {
 	height: auto;
 }
 .trendingfashionbx .shadow{
@@ -1271,7 +1741,7 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 	bottom: auto;
 	transform: none;
 	display: inline-block;
-}
+}*/
 .trendingfashionbx .hover01 span{
 	font-size: 14px;
 }
@@ -1323,9 +1793,12 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 .collectionchCon .collectionitem {
     width: 80px;
 }
-.toppicswrap.productlisting .productlistbox {
+.toppicswrap.productlisting .productlistbox,.toppicswrap.productlisting.watchlist .productlistbox{
 	width: auto;
 	float: none;
+}
+.toppicswrap .itembox .itemdetailsbx .itemsmdes{
+	height: auto;
 }
 }
 @media only screen and (max-width:380px) {
@@ -1337,6 +1810,9 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
     height: 80px;
 }
 .subCategorySlider .itembox h4 {
+    font-size: 13px;
+}
+.movewishlistrw a {
     font-size: 13px;
 }
 }
@@ -1351,5 +1827,23 @@ ul.social-network,.navbar-default span.leftColorbg, .navbar-default span.rightCo
 }
 .orderid_detailsbx {
     margin-left: 90px;
+}
+.movewishlistrw a {
+    font-size: 11px;
+}
+.cardContentbx .form-control {
+    font-size: 15px;
+}
+.validthrurw .validinput .span_slash{
+	font-size: 15px;
+}
+.cardContentbx .cardidmgbxrw .cardidimg {
+    width: 50px;
+    height: 40px;
+}
+.contact_towakirw .wakilinkbx{
+	margin-right: 0;
+	margin-bottom: 15px;
+	display: block;
 }
 }

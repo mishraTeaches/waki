@@ -1,3 +1,167 @@
-<p>
-  cart works!
-</p>
+
+<!--Choose Address Box Model Start Here-->
+<div class="modal fade" id="chooseAddress" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Select Address</h4>
+        </div>
+        <div class="modal-body">
+            <div class="savedaddsbxrow" *ngFor="let addr of addresses"  data-dismiss="modal" (click)="modal(addr)">
+                <div class="shippedbox">
+                  <div class="addressbox">
+                    <h5>{{addr.fullName}}</h5>
+                    <h6>{{addr.addresses}}</h6>
+                    <h6>Contact: {{addr.countryCode}}{{addr.contactNumber}}</h6>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Choose Address Box Model End Here-->
+<div class="midConwrap">
+    <div class="productlistingwrap" *ngIf="!notfoundcart">
+        <div class="Checkout_heading_title">
+            <h4>{{productDetail.length > 1 ? productDetail.length + ' items' : productDetail.length + ' item'}} </h4>
+            <div class="bagtotalcheckoutbtnbx">
+                <div class="bagaed">Bag Total <span>{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{bagDetail.bagTotal*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</span> </div>
+                <a class="checkoutbutton" href="javascript:void(0);" (click)="getPaymentList()">checkout</a>
+            </div>
+        </div>
+        <div class="checkoutmiddleConwrap">
+            <div class="row checkout clearfix">
+                <div class="col-sm-7 colcheck">
+                    <div class="wakicheckoutprobx orderlistContent" *ngFor="let productdetail of productDetail">
+                        <div class="orderidproConwrap">
+                            <div class="orderidprobox clearfix">
+                                <div class="proimgbx" *ngFor="let image of productdetail['image']">
+                                  <img [src]="image" alt="">
+                                </div>
+                                <div class="orderid_detailsbx checkout">
+                                    <div class="wakicheckoutprodetails">
+                                        <div class="pro_ord_nm">{{productdetail['productName']}}</div>
+                                        <div class="brand_pro">{{productdetail['brand']}}</div>
+                                        <div class="prosminfo">{{productDetail['description']}}</div>
+                                        <!-- <div class="storageitem">Storage</div> -->
+                                        <div class="qty clearfix">
+                                                <div class="wakichqtypro">
+                                                    <span class="qtytxtv">Qty :</span>
+                                                    <button type="button" class="subqty" (click)="increaseQuantity(productdetail['productQuantity'],productdetail.orderId,'decrease')"></button>
+                                                    <input class="form-control" id="quantvalue" type="text" [value]="productdetail['productQuantity']" />
+                                                    <button type="button" class="addqty" (click)="increaseQuantity(productdetail['productQuantity'],productdetail.orderId,'increase')"></button>
+                                                </div>
+                                            </div>
+                                        <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{productdetail.price*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
+                                       <div class="link_page" [routerLink]="['/detail',productdetail.productId]"></div>
+                                      </div>
+                                    <div class="movewishlistrw">
+                                        <div class="row clearfix">
+                                            <div class="col-xs-4 col-md-5 colstline">
+                                              <a href="javascript:void(0);" (click)="removecart(productdetail['productId'])">Remove</a>
+                                            </div>
+                                            <div class="col-xs-8 col-md-7">
+                                              <a href="javascript:void(0);" (click)="addToWishlist(productdetail)">Move to Wishlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-5 colcheck">
+                    <!--Bag Total Box Details Start Here-->
+                    <div class="delivereddetailsbox bagtotal" >
+                        <h3>BAG TOTAL</h3>
+                        <div class="totalpaidrw blk">
+                            <div class="row clearfix">
+                                <div class="col-xs-6"><span class="totalsheading">Product Price </span> </div>
+                                <div class="col-xs-6"> <span class="aedpricebx aed">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{bagDetail.productPrice*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</span></div>
+                            </div>
+                        </div>
+                        <div class="totalpaidrw blk">
+                            <div class="row clearfix">
+                                <div class="col-xs-6"><span class="totalsheading">Estimated Tax</span> </div>
+                                <div class="col-xs-6"> <span class="aedpricebx aed">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{bagDetail.estimateTax*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</span></div>
+                            </div>
+                        </div>
+                        <div class="totalpaidrw blk">
+                            <div class="row clearfix">
+                                <div class="col-xs-6"><span class="totalsheading">Delivery Charges</span> </div>
+                                <div class="col-xs-6"> <span class="aedpricebx aed">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{bagDetail.deliveryCharges*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bag Total Box Details End Here-->
+
+                    <!--Deliver To Box Start Here-->
+                    <div class="delivereddetailsbox bagtotal">
+                        <div class="shippedbox">
+                            <h3>DELIVER TO</h3>
+                            <div class="addressbox" *ngIf="addresses.length > 0;else notfound">
+                                <h5>{{user['firstName']}}</h5>
+                                <h6>{{addresses[0].addresses}}</h6>
+                                <!-- <h6></h6> -->
+                                <div  *ngIf="addresses.length > 1" class="changeshippingaddtext" data-toggle="modal" data-target="#chooseAddress">Change shipping address</div>
+                            </div>
+                            <ng-template #notfound ><a><span [routerLink]="['/account/address']" style="cursor:pointer">Please Click to Register Your Address</span></a></ng-template>
+                        </div>
+                    </div>
+                    <!--Deliver To Box End Here-->
+
+                     <!--Payment Option Start Here-->
+                     <div class="delivereddetailsbox bagtotal">
+                            <div class="shippedbox">
+                                <h3>PAYMENT OPTIONS</h3>
+                               <div class="payment_methodbx">
+                                    <div class="paymentmetrow">
+                                        <input type="radio" id="paymentcard1" name="radio-group" checked>
+                                        <label for="paymentcard1">
+                                            <span class="payment_type_img">
+                                              <img src="assets/images/visa_pay.png" alt="" />
+                                            </span>
+                                            <span class="cardnumberbx">XXXX-XXXX-XXXX-4443</span>
+                                            <span class="choosetype_bullets"></span>
+                                        </label>
+                                    </div>
+                                    <div class="paymentmetrow">
+                                        <input type="radio" id="paymentcard2" name="radio-group">
+                                        <label for="paymentcard2">
+                                            <span class="payment_type_img"><img src="assets/images/visa_pay.png" alt="" /></span>
+                                            <span class="cardnumberbx">XXXX-XXXX-XXXX-4443</span>
+                                            <span class="choosetype_bullets"></span>
+                                        </label>
+                                    </div>
+                                    <div class="paymentmetrow">
+                                            <input type="radio" id="paymentcod" name="radio-group" (click)="radioChange('COD')">
+                                            <label for="paymentcod">Pay Via COD <span class="choosetype_bullets"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Payment Option Start Here-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="midConwrap" *ngIf="notfoundcart">
+      <div class="productlistingwrap">
+          <div class="category_subcategory_row">
+              <h4>MY Cart(0)</h4>
+          </div>
+      </div>
+         <div class="termsContentwrap">
+           <div class="emptycartimgrw">
+               <img src="assets/images/empty_cart.png" alt="Empty Cart" />
+           </div>
+           <h4 class="shoppingcartempty">Your Shopping Cart is empty</h4>
+           <!-- <h5 class="addtowishlistitem"><a href="javascript:void(0);"> + items from wishlist</a></h5> -->
+         </div>
+    </div>
+</div>

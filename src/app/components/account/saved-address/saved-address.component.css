@@ -1,0 +1,11 @@
+agm-map {
+  height: 400px;
+}
+i.fa.fa-ellipsis-v.left {
+  position: absolute;
+  right: 32px;
+  cursor: pointer;
+}
+.field-error{
+  color: red;
+}

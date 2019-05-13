@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ChangeLangService {
 
   translateInfo:BehaviorSubject<any>;
-  constructor() { 
+  constructor() {
     this.translateInfo=new BehaviorSubject<any>(this.translateInfo);
   }
   change(translateData:any){

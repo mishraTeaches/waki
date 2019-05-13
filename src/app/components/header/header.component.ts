@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ChangeLangService } from '../../provider/change-lang.service';
 import { appConstant } from '../../constant/app.constant';
 import { WakiServiceService } from '../../service/waki-service.service';
 import { sendDataService } from '../../provider/sendData.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { getInjectorIndex } from '@angular/core/src/render3/di';
 import { ToastrService } from 'ngx-toastr';
+import {CartdetailService} from '../../provider/cartdetail.service';
 
 declare var $: any;
 
@@ -19,27 +21,90 @@ export class HeaderComponent implements OnInit {
   currentLanguage: any;
   baseUrl = appConstant['baseUrl'];
   categoryList: any = [];
+  isMobile:boolean = false;
   languageData: any;
+  cartResponse:any={};
+  productDetail:any=[];
+  cartcount:any="";
+  userexist:boolean=false;
+cartResponseLength;any='';
+   social: any = {};
+  classArray:any=[];
   productcategoryId: any = [];
+  childrenlength:any;
   stopApi: boolean = false;
+  nohit:boolean=false;
+  currentLanguageData:any={};
   tempLang: any = {}
   categoryId: any;
   subCategory: any = [];
+@ViewChild('datagetting')
+datagetting:ElementRef;
 
-
-  constructor(private toastr: ToastrService,private router: Router, private senddata: sendDataService, private translate: TranslateService, private languageTranslateService: ChangeLangService, private wakiservice: WakiServiceService) {
-    this.loadLanguageData();
-    this.trending();
+@HostListener('window:resize') resizeWindow()
+  {
+    this.checkMobileMode();
   }
 
-  ngOnInit() {
+  constructor(private carddetail:CartdetailService,private languageTranslateInfoService:ChangeLangService,private renderer: Renderer2,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private router: Router, private senddata: sendDataService, private translate: TranslateService, private languageTranslateService: ChangeLangService, private wakiservice: WakiServiceService)
+  {
+    this.checkMobileMode();
+    languageTranslateInfoService.translateInfo.subscribe((data) => {
+      if(data){
+                 this.currentLanguageData = data;
+               }
+       });
+       if (JSON.parse(localStorage.getItem('sociallogin'))){
+         this.userexist=true;
+        this.social = JSON.parse(localStorage.getItem('sociallogin'));
+        this.cartList();
+        this.carddetail.currentMessage.subscribe(data => {
+          this.cartcount = data;
+        });
+      }
+      if (JSON.parse(localStorage.getItem('userLoginDetail'))) {
+        this.userexist=true;
+        this.social = JSON.parse(localStorage.getItem('userLoginDetail'));
+        this.carddetail.currentMessage.subscribe(data => {
+          this.cartcount = data;
+                  });
+        this.cartList();
+        // this.social = this.data['result']
+      }
+      if (JSON.parse(localStorage.getItem('register'))) {
+        this.userexist=true;
+        this.social = JSON.parse(localStorage.getItem('register'));
+        this.carddetail.currentMessage.subscribe(data => {
+          this.cartcount = data;
+                  });
+                  this.cartList();
+      }
+       this.loadLanguageData();
+       this.trending();
   }
+  ngOnInit() { }
 
+  cartList(){
+    let URL = appConstant.baseUrl + `vendor/listOfAddCart/?lang=${this.currentLanguageData['lng_code']}`;
+    this.wakiservice.createGetRequest(URL,1).subscribe((response: any) => {
+      this.cartResponse = response['result'];
+      this.cartResponseLength = Object.keys(this.cartResponse).length;
+      this.productDetail = this.cartResponse['productDetail'];
+      if(this.cartResponseLength > 0) {
+  this.cartcount = this.productDetail.length;
+      }
+      if(this.cartResponseLength == 0) {
+        this.cartcount="";
+      }
+  });
+  }
   loadLanguageData() {
     // let url = this.baseUrl + "assets/json/get_language.json";
-    this.wakiservice.createGetRequest('assets/json/get_language.json').subscribe((response: any) => {
-      if (response['status'] == true) 
+    // this.ngxService.start();
+    this.wakiservice.createGetRequest('assets/json/get_language.json',0).subscribe((response: any) => {
+      if (response['status'] == true)
       {
+        // this.ngxService.stop();
         this.languageData = response;
         this.setDefaultLanguages(response);
       }
@@ -72,12 +137,21 @@ export class HeaderComponent implements OnInit {
     // }
   }
 
-  getCategoryId(id) 
+  getCategoryId(id,index,event)
   {
+    // this.nohit=true;
+    // alert(index);
+    // this.classArray=
+    if(event.path[1].className.length>=13){
+      this.nohit=true;
+    }
+    else{
+      this.nohit=false;
     let URL = appConstant.baseUrl + 'vendor/OpenSubCategory';
     let data = { "lang": this.tempLang['lng_code'], "categoryId": id }
-    this.wakiservice.createPostRequest(URL, data).subscribe((response: any) => {
-      if (response['statusCode'] == 200) {
+    this.wakiservice.createPostRequest(URL, data,0).subscribe((response: any) => {
+      if (response['statusCode'] == 200)
+      {
         this.subCategory = response['result'];
         // this.toastr.success(response['statusMessage']);
         //  console.log(this.subCategory)
@@ -92,21 +166,31 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+}
   trending() {
     let URL = appConstant.baseUrl + 'vendor/getCategoryList';
-    this.wakiservice.createGetRequest(URL).subscribe((response: any) => {
+    this.wakiservice.createGetRequest(URL,0).subscribe((response: any) => {
       if (response['statusCode'] == 200) {
         this.categoryList = response['result'];
-        // this.toastr.success(response['statusMessage']);
-        // console.log(this.tempLang['lng_code']);
       }
     });
   }
-
-
-
-  ngAfterViewInit(): void {
-
+  checkMobileMode()
+  {
+    if (window.innerWidth < 768) {
+      this.isMobile = true;
+    }
+   else {
+   this.isMobile = false;
+   }
   }
-
+ngAfterViewInit(): void {
+  //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+  //Add 'implements AfterViewInit' to the class.
+  if (this.isMobile == true) {
+    $('.fullwdmenu').on('click', 'li ul.dropdown-menu li a', function() {
+       $('.menu-overlay').click();
+      });
+  }
+}
 }

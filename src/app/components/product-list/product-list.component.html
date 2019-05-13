@@ -1,8 +1,9 @@
-<div class="midConwrap"> 
+<ngx-ui-loader></ngx-ui-loader>
+<div class="midConwrap">
   <div class="productlistingwrap">
-    <div class="category_subcategory_row">
+    <!-- <div class="category_subcategory_row">
       <h4>Category > Subcategory </h4>
-    </div>
+    </div> -->
     <div class="productlistingCon">
       <div class="row wd5 clearfix">
         <!--Subcategory Section Start Here-->
@@ -68,13 +69,13 @@
             <div class="row clearfix" *ngIf="prodList.length>0;else nofound">
               <div class="col-sm-2 productlistbox" *ngFor="let product of prodList">
                 <div class="itembox">
-                  <div class="itemimgbx">
+                  <div class="itemimgbx" [routerLink]="['/detail',product._id]">
                       <a href="javascript:void(0);">
                             <img [src]="product.image[0]"  alt="" />
                       </a>
                   </div>
                   <div class="itemdetailsbx">
-                    <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{product['price']*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
+                    <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}  {{product['price']*currencyConvertService.currentCurrencyData['value']}} {{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
                     <h4>{{product.productName}}</h4>
                     <div class="bdrrw clearfix"><span class="top_bottom_bdr"></span></div>
                     <div class="itemcomnm">{{product.brand}}</div>
@@ -82,7 +83,7 @@
                     <!--  -->
                   </div>
                 </div>
-            
+
               </div>
             </div>
             <ng-template #nofound>{{noProductMessage}}</ng-template>

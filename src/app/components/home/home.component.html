@@ -1,31 +1,31 @@
 
   <!--Header Section Start Here-->
   <!--Header Section End Here-->
-  
-  <div class="midConwrap"> 
+  <ngx-ui-loader></ngx-ui-loader>
+  <div class="midConwrap">
     <!--Banner Section Start Here-->
     <div class="bannerbx">
       <div id="bannerslider" class="owl-carousel owl-theme">
-        <div class="item clearfix " *ngFor="let images of banner">
+        <div class="item clearfix " *ngFor="let images of banner" >
           <img [src]="images.dealImage" class="img-responsive loading" alt=""/>
          </div>
-        
+
          <!-- <div class="item clearfix"><img class="img-responsive" src="assets/images/banner_01.jpg"  alt="" /> </div> -->
       </div>
     </div>
-    <!--Banner Section End Here--> 
-    
+    <!--Banner Section End Here-->
+
     <!--Big Ad Banner Box Start Here-->
-    <div class="bigbannerAdbx" *ngFor="let topPrmote of topPromotedDeals"> 
-      <img [src]="topPrmote.promotedDealImage" class=" loading" alt="" /> 
+    <div class="bigbannerAdbx" *ngFor="let topPrmote of topPromotedDeals">
+      <img [src]="topPrmote.promotedDealImage" class = "loading" alt="" />
     </div>
-    <!--Big Ad Banner Box End Here--> 
+    <!--Big Ad Banner Box End Here-->
 
     <!--New Collection Section Start Here-->
     <div class="newcollectiontabSection">
       <!--Fahionable Shirts Collection Start Here-->
-      <div class="collectiontabs active" onclick="tabBx('fashionable')"> 
-        <div class="tabCon">{{'home.new_collection' | translate}} <span>{{'home.fashionable' | translate}}</span><span class="lefttooltips"></span> </div> 
+      <div class="collectiontabs active" onclick="tabBx('fashionable')">
+        <div class="tabCon">{{'home.new_collection' | translate}} <span>{{'home.fashionable' | translate}}</span><span class="lefttooltips"></span> </div>
       </div>
       <div id="fashionable" class="collectionslideCon" style="display: block;">
         <div class="collectionchCon">
@@ -39,8 +39,8 @@
        <!--Fahionable Shirts Collection End Here-->
 
        <!--Color And Prints Collection Start Here-->
-      <div class="collectiontabs color_prints" onclick="tabBx('new_color_prints')"> 
-          <div class="tabCon">{{'home.2015_collection' | translate}}<span>{{'home.new_color' | translate}} </span><span class="lefttooltips"></span> </div> 
+      <div class="collectiontabs color_prints" onclick="tabBx('new_color_prints')">
+          <div class="tabCon">{{'home.2015_collection' | translate}}<span>{{'home.new_color' | translate}} </span><span class="lefttooltips"></span> </div>
         </div>
         <div id="new_color_prints" class="collectionslideCon">
             <div class="collectionchCon">
@@ -54,8 +54,8 @@
         <!--Color And Prints Collection End Here-->
 
       <!--Sale of the day Collection Start Here-->
-      <div class="collectiontabs saleofday" onclick="tabBx('saleof_the_day')"> 
-          <div class="tabCon">{{'home.sale_of_day' | translate}} <span>20 to 50% {{'home.on_all_products' | translate}} </span><span class="lefttooltips"></span> </div> 
+      <div class="collectiontabs saleofday" onclick="tabBx('saleof_the_day')">
+          <div class="tabCon">{{'home.sale_of_day' | translate}} <span>20 to 50% {{'home.on_all_products' | translate}} </span><span class="lefttooltips"></span> </div>
         </div>
         <div id="saleof_the_day" class="collectionslideCon">
             <div class="collectionchCon">
@@ -69,8 +69,8 @@
         <!--Sale of the day Collection End Here-->
 
         <!--Summer Collection Start Here-->
-      <div class="collectiontabs summer_item" onclick="tabBx('summeritem')"> 
-          <div class="tabCon">{{'home.new_items_summer' | translate}} <span>{{"home.new_swim_wear" | translate}}</span><span class="lefttooltips"></span> </div> 
+      <div class="collectiontabs summer_item" onclick="tabBx('summeritem')">
+          <div class="tabCon">{{'home.new_items_summer' | translate}} <span>{{"home.new_swim_wear" | translate}}</span><span class="lefttooltips"></span> </div>
         </div>
         <div id="summeritem" class="collectionslideCon">
             <div class="collectionchCon">
@@ -85,7 +85,7 @@
 
     </div>
     <!--New Collection Section End Here-->
-    
+
     <!--Top Picks Section Start Here-->
     <div class="toppicswrap" *ngIf="topPicksMobile.length > 0">
       <h3>{{'home.top_picks_in_mobile' | translate}}</h3>
@@ -93,8 +93,8 @@
         <div class="item clearfix" [routerLink]="['/detail',mobile._id]" *ngFor="let mobile of topPicksMobile">
           <div class="itembox">
             <div class="itemimgbx">
-              <a href="javascript:void(0);">  <img [src]="mobile.image" class="loading" width="200" height="400" alt="" /> </a>
-            
+              <a href="javascript:void(0);">
+                 <img [src]="mobile.image" class="loading" width="200" height="400" alt="" /> </a>
             </div>
             <div class="itemdetailsbx">
               <div class="aedprice">{{currencyConvertService.currentCurrencyData['default']==1?currencyConvertService.currentCurrencyData['sign']:''}}{{mobile['price']*currencyConvertService.currentCurrencyData['value']}}</div>
@@ -106,8 +106,8 @@
         </div>
       </div>
     </div>
-    <!--Top Picks Section End Here--> 
-    
+    <!--Top Picks Section End Here-->
+
     <!--Shop By Brands Section Start-->
     <div class="brandssectionbx" *ngIf="topBrands.length > 0">
       <h3>{{'home.shop_by_brand' | translate}}</h3>
@@ -123,24 +123,27 @@
         <h3>TRENDING IN FASHION</h3>
         <div class="fashionitembox">
           <div class="row marginwd8 hover01 clearfix">
-            <div class="col-sm-3 colwd" *ngFor="let trending of topPicksFashion">
-              <a href="javascript:void(0);">
-              <div class="trendingbx">
-                <figure>
-                  <div class="shadow">
-                    <img class="img-responsive loading" [src]="trending.image" alt=""></div>
-                  <span>{{trending.productName}}</span>
-                 </figure>
+              <div id="trendingfahion" class="owl-carousel trendingfahion owl-theme">
+                <div class="item" *ngFor="let trending of topPicksFashion">
+                    <a href="javascript:void(0);">
+                        <div class="trendingbx">
+                          <figure>
+                            <div class="shadow" [routerLink]="['/detail',trending._id]" >
+                              <img class="img-responsive loading" [src]="trending.image" alt="">
+                            </div>
+                            <span>{{trending.productName}}</span>
+                           </figure>
+                        </div>
+                        </a>
+                </div>
               </div>
-              </a>
-            </div>
           </div>
         </div>
       </div>
 
 
-    <!--Treding Fashion Section End Here--> 
-    
+    <!--Treding Fashion Section End Here-->
+
     <!--Collections Slider Start Here-->
     <div class="collectionsliderwarp">
       <div class="row mnmlt eqWrap equalHMWrap clearfix">
@@ -152,9 +155,9 @@
                   <div class="col-xs-7">
                     <div class="collectionConbx">
                       <div class="typecollection clearfix"><span class="solidline"></span><span class="typetext">{{'home.dresses' |translate}}</span></div>
-                      <div class="cellecheading">{{'home.new_collection' |translate}}</div>
-                      <div class="cellecheadingsm">{{'home.see_new_collection' |translate}}</div>
-                      <div class="shopnowrow"><a href="javascript:void(0);">{{'home.shop_now' |translate}}</a></div>
+                      <div class="cellecheading">Collection shopping</div>
+                      <div class="cellecheadingsm">Collection shopping</div>
+                      <div class="shopnowrow"><a href="javascript:void(0);">Shop Now</a></div>
                     </div>
                   </div>
                   <div class="col-xs-5"><img class="img-responsive" src="assets/images/collection1.jpg" width="328" height="370" alt="" /></div>
@@ -167,9 +170,9 @@
                   <div class="col-xs-7">
                     <div class="collectionConbx">
                       <div class="typecollection clearfix"><span class="solidline"></span><span class="typetext">{{'home.dresses' | translate}}</span></div>
-                      <div class="cellecheading">{{'home.new_collection'| translate}}</div>
-                      <div class="cellecheadingsm">{{'home.see_new_collection' | translate}}</div>
-                      <div class="shopnowrow"><a href="javascript:void(0);">{{'home.shop_now' | translate}}</a></div>
+                      <div class="cellecheading">Collection shopping</div>
+                      <div class="cellecheadingsm">Collection shopping</div>
+                      <div class="shopnowrow"><a href="javascript:void(0);">Shop Now</a></div>
                     </div>
                   </div>
                   <div class="col-xs-5">
@@ -177,7 +180,7 @@
                 </div>
               </div>
             </div>
-            <div class="item clearfix">
+            <!-- <div class="item clearfix">
               <div class="collectionbx">
                 <div class="row clearfix">
                   <div class="col-xs-7">
@@ -192,7 +195,7 @@
                 </div>
               </div>
             </div>
-            <div class="item clearfix">
+            <!-- <div class="item clearfix">
               <div class="collectionbx">
                 <div class="row clearfix">
                   <div class="col-xs-7">
@@ -206,7 +209,7 @@
                   <div class="col-xs-5"><img class="img-responsive" src="assets/images/collection1.jpg" width="328" height="370" alt="" /></div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-sm-6 pdn">
@@ -217,9 +220,9 @@
                   <div class="col-xs-7">
                     <div class="collectionConbx">
                       <div class="typecollection clearfix"><span class="solidline"></span><span class="typetext">CatLevel 3</span></div>
-                      <div class="cellecheading">{{'home.new_collection' | translate}}</div>
-                      <div class="cellecheadingsm">{{'home.see_new_collection' | translate}}</div>
-                      <div class="shopnowrow"><a href="javascript:void(0);">{{'home.shop_now' | translate}}</a></div>
+                      <div class="cellecheading">Collection shopping</div>
+                      <div class="cellecheadingsm">Collection shopping</div>
+                      <div class="shopnowrow"><a href="javascript:void(0);">Shop Now</a></div>
                     </div>
                   </div>
                   <div class="col-xs-5"><img class="img-responsive" src="assets/images/collection2.jpg" width="328" height="370" alt="" /></div>
@@ -234,7 +237,8 @@
                       <div class="typecollection clearfix"><span class="solidline"></span><span class="typetext">CatLevel 3</span></div>
                       <div class="cellecheading">{{'home.new_collection' | translate}}</div>
                       <div class="cellecheadingsm">{{'home.see_new_collection' | translate}}</div>
-                      <div class="shopnowrow"><a href="javascript:void(0);">{{'home.shop_now' | translate}}</a></div>
+                      <div class="shopnowrow">
+                        <a href="javascript:void(0);">{{'home.shop_now' | translate}}</a></div>
                     </div>
                   </div>
                   <div class="col-xs-5"><img class="img-responsive" src="assets/images/collection2.jpg" width="328" height="370" alt="" /></div>
@@ -245,32 +249,32 @@
         </div>
       </div>
     </div>
-    <!--Collections Slider End Here--> 
-    
+    <!--Collections Slider End Here-->
+
     <!--Top Picks Section Start Here-->
     <div class="toppicswrap" *ngIf="topPicksMobile.length > 0">
       <h3>TOP PICKS IN MOBILE</h3>
       <div class="topitemsproductsSlbx owl-carousel toppics owl-theme">
         <div class="item clearfix"  *ngFor="let mobilesecond of topPicksMobile">
-      <div class="itembox">
+      <div class="itembox" [routerLink]="['/detail',mobilesecond._id]">
       <div class="itemimgbx">
-        <img src="assets/images/mobile_screen_01.jpg" width="200" height="400" alt="" />
+        <img [src]="mobilesecond.image" width="200" height="400" alt="" />
       </div>
             <div class="itemdetailsbx">
-              <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{mobilesecond['price']*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
+              <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}}{{mobilesecond.price*currencyConvertService.currentCurrencyData['value']}}{{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
               <h4>{{mobilesecond.productName}}</h4>
               <div class="itemcomnm">{{mobilesecond.brand}}</div>
         <div class="itemsmdes" *ngFor="let mobi of mobilesecond.specifications">{{mobi.TEST}}{{mobi.Type}}</div>
             </div>
           </div>
         </div>
-       
-       
-     
+
+
+
       </div>
     </div>
-    <!--Top Picks Section End Here--> 
-    
+    <!--Top Picks Section End Here-->
+
     <!--Last Product Row Start Here-->
     <div class="lastprorows">
       <div class="row mnm eqWrap equalHMWrap clearfix">
@@ -289,9 +293,9 @@
         </div>
       </div>
     </div>
-    <div class="loader-cat" style="text-align: center;" *ngIf = "isLoader">
-      <span class="cat-loader"></span>
-      
-    </div>		
-    <!--Last Product Row End Here--> 
+    <!-- <div class="loader-cat" style="text-align: center;" *ngIf = "isLoader">
+      <span class="cat-loader" style="color:red">hey i am loading</span>
+
+    </div> -->
+    <!--Last Product Row End Here-->
 </div>

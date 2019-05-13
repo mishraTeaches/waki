@@ -16,7 +16,7 @@ export class RegisterComponent{
   baseUrl=appConstant['baseUrl'];
   regUser:any={};
   getCountryData:any=[];
-  constructor(private router:Router,private toastr: ToastrService,private wakiService:WakiServiceService ,private languageTranslateInfoService:ChangeLangService) { 
+  constructor(private router:Router,private toastr: ToastrService,private wakiService:WakiServiceService ,private languageTranslateInfoService:ChangeLangService) {
     languageTranslateInfoService.translateInfo.subscribe((data) => {
       if(data){
                  this.currentLanguageData = data;
@@ -32,33 +32,34 @@ export class RegisterComponent{
      return
     //  this.ngProgress.start();
    this.regUser['type'] = 'normal';
-   this.registery(this.regUser);   
-  // $(".login-info").css("display", "none"); 
-   
+   this.registery(this.regUser);
+  // $(".login-info").css("display", "none");
+
  }
  registery(userData:any){
    userData['lang'] = this.currentLanguageData['lng_code'];
-  //  userData['lang_id'] = this.currentLanguageData['id'];  
+  //  userData['lang_id'] = this.currentLanguageData['id'];
    let url = this.baseUrl + "user/signup";
-  this.wakiService.createPostRequest(url, userData).subscribe((response: any) => { 
+  this.wakiService.createPostRequest(url, userData,0).subscribe((response: any) => {
   //  this.ngProgress.done();
      if(response['statusCode'] == 200)
      {
+       localStorage.setItem("accessToken",response['accessToken']);
+       localStorage.setItem("register",JSON.stringify(response['result']));
        this.toastr.success(response['statusMessage'])
        setTimeout(() => {
         this.router.navigateByUrl('/');
-       }, 500);
+       }, 1000);
       // this.msgStatus= true;
      }
      else{
        this.toastr.error(response['statusMessage']);
      }
   });
-
 }
 getCountries(){
   let url="assets/json/country.json";
-  this.wakiService.createGetRequest(url).subscribe((response)=>{
+  this.wakiService.createGetRequest(url,0).subscribe((response)=>{
  this.getCountryData=response['countries'];
   })
 }
