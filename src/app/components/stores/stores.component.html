@@ -1,19 +1,19 @@
 <div class="midConwrap">
     <div class="productlistingwrap">
-        <!-- <div class="category_subcategory_row">
-            <h4>Watchlist </h4>
-        </div> -->
+        <div class="category_subcategory_row">
+            <h4>Wishlist </h4>
+        </div>
         <div class="productlistingCon">
             <!--Watch List Product Listing Start Here-->
             <div class="toppicswrap productlisting watchlist clearfix">
-                <div class="row row_watchlist clearfix">
-                    <div class="col-sm-2 productlistbox col_watchlist" *ngIf="show">
-                        <div class="itembox" *ngFor="let store of responseData">
+                <div class="row row_watchlist clearfix" *ngIf="show==true">
+                    <div class="col-sm-2 productlistbox col_watchlist"  *ngFor="let store of responseData">
+                        <div class="itembox">
                             <div class="itemimgbx" *ngFor="let image of store['image']">
                               <img [src]="image" alt="" style="cursor: pointer" [routerLink]="['/detail',store['productId']]" />
                             </div>
                             <div class="itemdetailsbx">
-                                <div class="aedprice">$ {{store['price']}}</div>
+                                <div class="aedprice">{{currencyConvertService.currentCurrencyData['position']=='left'?currencyConvertService.currentCurrencyData['sign']:''}} {{store.price*currencyConvertService.currentCurrencyData['value']}} {{currencyConvertService.currentCurrencyData['position']=='right'?currencyConvertService.currentCurrencyData['sign']:''}}</div>
                                 <h4>{{store['productName']}}</h4>
                                 <div class="bdrrw clearfix">
                                   <span class="top_bottom_bdr"></span>
@@ -27,22 +27,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="midConwrap" *ngIf="!show">
-                      <div class="productlistingwrap">
-                          <div class="category_subcategory_row">
-                              <h4>MY Wishlist(0)</h4>
-                          </div>
-                      </div>
-                         <div class="termsContentwrap">
-                           <div class="emptycartimgrw">
-                               <img src="assets/images/empty_cart.png" alt="Empty Cart" />
-                           </div>
-                           <h4 class="shoppingcartempty">Your Shopping Cart is empty</h4>
-                           <!-- <h5 class="addtowishlistitem"><a href="javascript:void(0);"> + items from wishlist</a></h5> -->
-                         </div>
-                    </div>
-
                 </div>
+                <div class="midConwrap" *ngIf="show == false">
+                    <div class="productlistingwrap">
+                        <!-- <div class="category_subcategory_row">
+                            <h4>MY Wishlist(0)</h4>
+                        </div> -->
+                    </div>
+                       <div class="termsContentwrap">
+                         <div class="emptycartimgrw">
+                             <img src="assets/images/empty_cart.png" alt="Empty Cart" />
+                         </div>
+                         <h4 class="shoppingcartempty">Your Shopping Cart is empty</h4>
+                         <!-- <h5 class="addtowishlistitem"><a href="javascript:void(0);"> + items from wishlist</a></h5> -->
+                       </div>
+                  </div>
             </div>
             <!--Watch List Product Listing End Here-->
 

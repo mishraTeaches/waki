@@ -2,10 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="logorw clearfix">
     <ul class="nav navbar-nav">
-      <li><a href="javascript:void(0);" routerLink="/stores"><span class="stores"></span>{{'header.store'|translate}}</a></li>
-      <li><a href="javascript:void(0);" routerLink="/account"><span class="account"></span>{{'header.account'|translate}}</a></li>
-      <li>
-        <a href="javascript:void(0);" routerLink="/cart"><span class="cart"></span>
+      <li routerLinkActive="active">
+        <a href="javascript:void(0);" routerLink="/stores" ><span class="stores"></span>
+          <i class="notif_num" *ngIf="wishlistCount > 0">{{wishlistCount}}</i>{{'header.store'|translate}}</a></li>
+      <li routerLinkActive="active">
+        <a href="javascript:void(0);" routerLink="/account" ><span class="account"></span>{{'header.account'|translate}}</a></li>
+      <li routerLinkActive="active">
+        <a href="javascript:void(0);" routerLink="/cart" ><span class="cart"></span>
         <i class="notif_num" *ngIf="cartcount > 0">{{cartcount}}</i>{{'header.cart'|translate}}</a>
       </li>
     </ul>
@@ -21,6 +24,9 @@
       <button type="button" class="navbar-toggle collapsed" data-toggle="slide-collapse" data-target="#slide-navbar-collapse" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
   </div>
   <div class="collapse navbar-collapse" id="slide-navbar-collapse">
+      <div class="wakilogoviewmobilebx">
+          <div class="wakilogos"></div>
+      </div>
         <ul class="nav navbar-nav fullwdmenu" #datagetting>
           <span class="tpbdr"></span>
           <!-- <li class="active"><a href="#">Travel Gear</a></li> -->

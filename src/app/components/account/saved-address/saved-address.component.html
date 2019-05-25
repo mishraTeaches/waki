@@ -63,9 +63,11 @@
                             </div>
                           </div>
 
-                      <div class="form-group">
+                      <div class="form-group" >
                         <label>Address</label>
-                        <input class="form-control" name="addr" type="text" #addr = "ngModel" [(ngModel)]="addressObj['address']" placeholder="56 D Block, Sector 110, Noida 201301" #search autocorrect="off" autocapitalize="off" spellcheck="off" required  >
+                      <div id="pac-container">
+                        <input class="form-control" name="addr" type="text" #addr = "ngModel" [(ngModel)]="addressObj['address']" placeholder="56 D Block, Sector 110, Noida 201301" #search autocorrect="off" autocapitalize="off" spellcheck="off" required id="pac-input" >
+                      </div>
                         <div class="field-error" *ngIf="addr.errors">
                           <p class="field-error" *ngIf="addr['errors']['required'] && isFormSubmit">This field is Requrired</p>
                           <!-- <p class="field-error" *ngIf="addr['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
@@ -80,12 +82,12 @@
                           </div>
                         </div>
                         <div class="form-group">
-                            <label>Contact No.</label>
-                            <input class="form-control" name="contact" type="text" #contact = "ngModel" [(ngModel)]="addressObj['contact']" maxlength="13" minlength="6" type="text" autocomplete="off" required onkeypress='return (event.which > 47 && event.which <= 57) || event.which == 8 || event.which == 46' placeholder="Enter your contact number"/>
+                            <label>Contact Number.</label>
+                            <input class="form-control" name="contact" type="text" #contact = "ngModel" [(ngModel)]="addressObj['contact']" maxlength="15" minlength="5" type="text" autocomplete="off" required onkeypress='return (event.which > 47 && event.which <= 57) || event.which == 8 || event.which == 46' placeholder="Enter your contact number"/>
                             <div class="field-error" *ngIf="contact.errors">
                               <p class="field-error" *ngIf="contact['errors']['required'] && isFormSubmit">This field is Requrired</p>
-                              <p class="field-error" *ngIf="contact['errors']['maxlength'] && isFormSubmit">This field is Invalid</p>
-                              <p class="field-error" *ngIf="contact['errors']['minlength'] && isFormSubmit">This field is Invalid</p>
+                              <p class="field-error" *ngIf="contact['errors']['maxlength'] && isFormSubmit">Contact Number should be between 5 to 15 digits</p>
+                              <p class="field-error" *ngIf="contact['errors']['minlength'] && isFormSubmit">Contact Number should be between 5 to 15 digits</p>
                               <!-- <p class="field-error" *ngIf="contact['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->
                             </div>
                           </div>

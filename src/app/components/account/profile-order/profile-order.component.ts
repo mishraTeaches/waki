@@ -49,7 +49,9 @@ data:any={};
     this.wakiservice.createGetRequest(URL, 1).subscribe((response: any) => {
       this.addressResponse = response['result'];
       this.productDetail = this.addressResponse['productDetail'];
+      if(Object.keys(this.addressResponse).length > 0){
       this.deliveryAddress = this.productDetail['deliveryAddress'];
+    }
       this.result = Object.keys(this.addressResponse).length;
 
   });

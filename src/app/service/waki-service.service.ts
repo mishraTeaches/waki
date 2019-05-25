@@ -35,7 +35,6 @@ export class WakiServiceService {
   }
   createPostRequest(url, data, isHeader): Observable<any> {
     if (isHeader == 0) {
-      console.log(`header 0`)
       var httpOptions;
       httpOptions = {
         headers: new HttpHeaders({ "Content-Type": "application/json" })

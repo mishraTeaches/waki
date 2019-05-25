@@ -7,8 +7,8 @@
     <h2 class="mobilenum">{{social['countryCode']}} | {{social['phone']}}</h2>
     <span class="hichaticon"></span> </div>
   <!--Order List Content Start Here-->
-  <div class="orderlistContent">
-    <div class="row m10 clearfix" *ngIf="result['productDetail'] > 0 || result > 0">
+  <div class="orderlistContent" >
+    <div class="row m10 clearfix"  *ngIf="result['productDetail'] > 0 || result > 0">
       <div class="col-md-6 colp10" *ngFor="let detail of productDetail">
         <div class="orderidproConwrap" >
           <div class="orderidprobox clearfix">
@@ -72,6 +72,7 @@
       </div>
       <!-- <ng-template #notfound> Orders Not Present </ng-template> -->
     </div>
+    <p *ngIf="result == 0">Your Order is empty</p>
   </div>
   <!--Order List Content End Here-->
 </div>

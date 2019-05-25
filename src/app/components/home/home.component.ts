@@ -50,7 +50,7 @@ export class HomeComponent implements AfterViewInit{
   loadHomeData()
    {
      this.ngxService.start();
-    let URL = appConstant.baseUrl+`vendor/homeScreenAPi?lang=${this.currentLanguageData['lng_code']}`;
+    let URL = appConstant.baseUrl + `vendor/homeScreenAPi?lang=${this.currentLanguageData['lng_code']}`;
     this.wakiservice.createGetRequest(URL,0).subscribe((response: any) => {
       if(response['statusCode'] === 200)
       {
@@ -116,7 +116,13 @@ export class HomeComponent implements AfterViewInit{
           margin: 5,
           nav: false,
           dots: true,
+          vertical:true,
           autoplay: true,
+          mouseDrag : false,
+          touchDrag : false,
+          pullDrag:false,
+          freeDrag:false,
+          rewind:false,
           animateOut: 'slideOutUp',
           animateIn: 'slideInUp',
           responsive: {
@@ -196,7 +202,7 @@ export class HomeComponent implements AfterViewInit{
           this.mobileslider();
           this.collectionslider();
           this.trending();
-        },3000);
+        }, 2000);
         this.cd.detectChanges();
 
       }

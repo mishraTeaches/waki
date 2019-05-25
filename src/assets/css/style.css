@@ -139,16 +139,25 @@ body {
 .logorw .navbar-nav > li:hover > a span.stores {
 	background-position: -30px 0;
 }
+.logorw .navbar-nav > li.active > a span.stores {
+	background-position: -30px 0;
+}
 .logorw .navbar-nav > li > a span.account {
 	background-position: 0 -30px;
 }
 .logorw .navbar-nav > li:hover > a span.account {
 	background-position: -30px -30px;
 }
+.logorw .navbar-nav > li.active > a span.account {
+	background-position: -30px -30px;
+}
 .logorw .navbar-nav > li > a span.cart {
 	background-position: 0 -60px;
 }
 .logorw .navbar-nav > li:hover > a span.cart {
+	background-position: -30px -60px;
+}
+.logorw .navbar-nav > li.active > a span.cart {
 	background-position: -30px -60px;
 }
 .navbar-brand {
@@ -247,6 +256,17 @@ a.socialIcon:hover, .socialHoverClass {
 	max-width:1920px;
 	background-color:#fff;
 }
+.wakilogoviewmobilebx{
+	padding: 15px 10px;
+	background-color: #191919;
+	display: none;
+}
+.wakilogoviewmobilebx .wakilogos {
+	width: 120px;
+	height: 42px;
+	background: url(../images/waki_logo1.png) no-repeat;
+	background-size: 100% 100%;
+}
 .nav.fullwdmenu .tpbdr{
 	border-top:1px solid #f2f2f2;
 	display:block;
@@ -344,6 +364,9 @@ a.socialIcon:hover, .socialHoverClass {
 	box-shadow: 4px 12px 5px rgba(0,0,0,0.1);
 	cursor: pointer;
 }
+.toppicswrap .itembox:focus{
+	outline: none;
+}
 .toppicswrap .itembox .itemimgbx{
 	position:relative;
 	height:180px;
@@ -432,6 +455,11 @@ a.socialIcon:hover, .socialHoverClass {
 	font-family: 'ProximaNova-Semibold';
 	font-size:13px;
 	color:#8493a8;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.toppicswrap .itembox .itemdetailsbx .itemsmdes p{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -886,9 +914,6 @@ html.sidepanel {
 	padding: 46px 20px;
 	vertical-align: middle;
 }
-.loader{
-  background-image: url(../images/giphy.gif);
-}
 .collectiontabs.active .tabCon{
 	color: #fff;
 	background-color: #25d7ea;
@@ -1007,7 +1032,8 @@ html.sidepanel {
 	margin: 0 auto;
 	-webkit-transition: all 400ms linear;
 	transition: all 400ms linear;
-	overflow: hidden;
+  overflow: hidden;
+  background-color: #f9f9f9;
 }
 .subCategorySlider .itemimgbx:hover {
 	background-color: #f9f9f9;
@@ -1187,6 +1213,9 @@ html.sidepanel {
 	margin-bottom: 0;
 	font-weight: normal;
 	padding-bottom: 5px;
+}
+.emailAddressbox label span{
+	color:#ff0000;
 }
 .emailAddressbox .forgot_text_row{
 	font-family: 'Montserrat-Light';
@@ -1394,7 +1423,7 @@ html.sidepanel {
 	position: relative;
 }
 .profiletabsConWrap .nav-tabs{
-	padding: 0px 4px;
+	padding: 0px 84px;
 	background-color: #fff;
 	border-bottom:0;
 	margin-bottom: 10px;

@@ -119,7 +119,7 @@
                             <div class="shippedbox">
                                 <h3>PAYMENT OPTIONS</h3>
                                <div class="payment_methodbx">
-                                    <div class="paymentmetrow">
+                                    <!-- <div class="paymentmetrow">
                                         <input type="radio" id="paymentcard1" name="radio-group" checked>
                                         <label for="paymentcard1">
                                             <span class="payment_type_img">
@@ -128,9 +128,9 @@
                                             <span class="cardnumberbx">XXXX-XXXX-XXXX-4443</span>
                                             <span class="choosetype_bullets"></span>
                                         </label>
-                                    </div>
+                                    </div> -->
                                     <div class="paymentmetrow">
-                                        <input type="radio" id="paymentcard2" name="radio-group">
+                                        <input type="radio" id="paymentcard2" name="radio-group" (click)="radioChange('online')">
                                         <label for="paymentcard2">
                                             <span class="payment_type_img"><img src="assets/images/visa_pay.png" alt="" /></span>
                                             <span class="cardnumberbx">XXXX-XXXX-XXXX-4443</span>
@@ -152,9 +152,9 @@
     </div>
     <div class="midConwrap" *ngIf="notfoundcart">
       <div class="productlistingwrap">
-          <div class="category_subcategory_row">
+          <!-- <div class="category_subcategory_row">
               <h4>MY Cart(0)</h4>
-          </div>
+          </div> -->
       </div>
          <div class="termsContentwrap">
            <div class="emptycartimgrw">

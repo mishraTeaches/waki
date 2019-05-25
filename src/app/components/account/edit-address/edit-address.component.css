@@ -4,3 +4,7 @@ agm-map {
 .field-error{
   color: red;
 }
+
+#pac-container{
+  position: relative;
+}

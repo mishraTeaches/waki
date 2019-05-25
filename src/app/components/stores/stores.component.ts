@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {appConstant} from '../../constant/app.constant';
 import { WakiServiceService } from 'src/app/service/waki-service.service';
 import { ChangeLangService } from 'src/app/provider/change-lang.service';
+import {CurrencyconvertService} from '../../provider/currencyconvert.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-stores',
@@ -17,7 +18,7 @@ export class StoresComponent{
   responseData:any=[];
   dataa:any={};
   @ViewChild('showing') showing: ElementRef;
-  constructor(private toastr: ToastrService,private wakiservice:WakiServiceService,private languageTranslateInfoService:ChangeLangService) {
+  constructor(private toastr: ToastrService,private currencyConvertService:CurrencyconvertService,private wakiservice:WakiServiceService,private languageTranslateInfoService:ChangeLangService) {
     languageTranslateInfoService.translateInfo.subscribe((data) => {
       if(data){
                  this.currentLanguageData = data;
@@ -33,16 +34,14 @@ export class StoresComponent{
   this.wakiservice.createGetRequest(URL,1).subscribe((response: any) => {
     if(response['statusCode'] === 200 && response['result'].length > 0)
     {
-      this.show=true;
-      this.responseData=response['result'];
+      this.show = true;
+      this.responseData = response['result'];
       this.response = response;
     }
 if (response['statusCode'] === 200 && response['result'].length === 0) {
   // this.toastr.error("WishList is Empty");
-  this.show=false;
+  this.show = false;
 }
-
-
   });
   }
   remove(id){

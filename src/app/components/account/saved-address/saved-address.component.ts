@@ -40,6 +40,7 @@ export class SavedAddressComponent implements AfterViewInit, OnInit {
        window.scrollTo(0, 0);
   }
   ngOnInit(): void {
+    this.getAddress();
     this.zoom = 12;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
@@ -111,13 +112,21 @@ addAddress(isValid:boolean){
       this.wakiservice.createPostRequest(URL, this.dataa,1).subscribe((response: any) => {
         this.toastr.success(response['statusMessage']);
         this.social['address'].push(response.result.address);
+        this.getAddress();
+        $(".add_address_formbx").css("display","none");
+        $("html, body").animate({ scrollTop: 0 }, "slow");
       });
-      this.router.navigate(['/account/address']);
 }
 ngAfterViewInit(): void {
   $('.addnewaddressbtnrw .addnewaddressbtn').click(function() {
     $('.add_address_formbx').slideToggle();
 });
+
+
+setTimeout(function(){
+  $(".pac-container").prependTo("#pac-container")
+  $(".pac-container").addClass("mycontainer");
+}, 300)
 }
 delete(id) {
   let URL = appConstant.baseUrl + `user/deleteAddress`;

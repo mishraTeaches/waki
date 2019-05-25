@@ -21,7 +21,10 @@ export class HeaderComponent implements OnInit {
   currentLanguage: any;
   baseUrl = appConstant['baseUrl'];
   categoryList: any = [];
+  wishlistcountlength:any={};
   isMobile:boolean = false;
+  wishlistresponse:any=[];
+  wishlistCount: any = '';
   languageData: any;
   cartResponse:any={};
   productDetail:any=[];
@@ -48,6 +51,10 @@ datagetting:ElementRef;
 
   constructor(private carddetail:CartdetailService,private languageTranslateInfoService:ChangeLangService,private renderer: Renderer2,private ngxService: NgxUiLoaderService,private toastr: ToastrService,private router: Router, private senddata: sendDataService, private translate: TranslateService, private languageTranslateService: ChangeLangService, private wakiservice: WakiServiceService)
   {
+    if ((localStorage.getItem('register') || localStorage.getItem('userLoginDetail') || localStorage.getItem('sociallogin') === null)) {
+      this.cartcount = 0;
+      this.wishlistCount = 0;
+    }
     this.checkMobileMode();
     languageTranslateInfoService.translateInfo.subscribe((data) => {
       if(data){
@@ -61,23 +68,32 @@ datagetting:ElementRef;
         this.carddetail.currentMessage.subscribe(data => {
           this.cartcount = data;
         });
+        this.carddetail.wishlistMessage.subscribe(wishdata =>{
+          this.wishlistCount = wishdata;
+        });
       }
       if (JSON.parse(localStorage.getItem('userLoginDetail'))) {
         this.userexist=true;
         this.social = JSON.parse(localStorage.getItem('userLoginDetail'));
+        this.cartList();
         this.carddetail.currentMessage.subscribe(data => {
           this.cartcount = data;
                   });
-        this.cartList();
+                  this.carddetail.wishlistMessage.subscribe(wishdata =>{
+                    this.wishlistCount = wishdata;
+                  });
         // this.social = this.data['result']
       }
       if (JSON.parse(localStorage.getItem('register'))) {
         this.userexist=true;
         this.social = JSON.parse(localStorage.getItem('register'));
+        this.cartList();
         this.carddetail.currentMessage.subscribe(data => {
           this.cartcount = data;
                   });
-                  this.cartList();
+                  this.carddetail.wishlistMessage.subscribe(wishdata => {
+                    this.wishlistCount = wishdata;
+                  });
       }
        this.loadLanguageData();
        this.trending();
@@ -97,6 +113,22 @@ datagetting:ElementRef;
         this.cartcount="";
       }
   });
+  }
+  getWishlist(){
+        let URL = appConstant.baseUrl + 'vendor/wishList';
+    this.wakiservice.createGetRequest(URL, 1).subscribe((response: any) => {
+      if (response['statusCode'] === 200 && response['result'].length > 0) {
+this.wishlistresponse = response['result'];
+this.wishlistCount = this.wishlistresponse.length;
+this.wishlistcountlength = Object.keys(this.wishlistresponse).length;
+if(this.wishlistcountlength == 0) {
+  this.wishlistCount = '';
+}
+      }
+  if (response['statusCode'] === 200 && response['result'].length === 0) {
+
+  }
+    });
   }
   loadLanguageData() {
     // let url = this.baseUrl + "assets/json/get_language.json";

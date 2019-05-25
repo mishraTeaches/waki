@@ -38,7 +38,9 @@
 
                             <div class="form-group">
                               <label>Address</label>
+                              <div id="pac-container">
                               <input class="form-control" name="addr" type="text" #addr = "ngModel" [(ngModel)]="addressObj['addresses']" placeholder="56 D Block, Sector 110, Noida 201301" #search autocorrect="off" autocapitalize="off" spellcheck="off" required  >
+                              </div>
                               <div class="field-error" *ngIf="addr.errors">
                                 <p class="field-error" *ngIf="addr['errors']['required'] && isFormSubmit">This field is Requrired</p>
                                 <!-- <p class="field-error" *ngIf="addr['errors']['pattern'] && isFormSubmit">Invalid Value </p> -->

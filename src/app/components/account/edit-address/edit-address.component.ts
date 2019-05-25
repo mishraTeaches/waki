@@ -1,5 +1,5 @@
 ///<reference types="@types/googlemaps" />
-import { Component, OnInit, ViewChild, ElementRef,NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,NgZone, AfterViewInit } from '@angular/core';
 import { WakiServiceService } from 'src/app/service/waki-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { appConstant } from 'src/app/constant/app.constant';
@@ -7,13 +7,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {ChangeLangService} from '../../../provider/change-lang.service';
 import { MapsAPILoader } from '@agm/core';
 // import {} from 'googlemaps';
+declare var $: any;
 
 @Component({
   selector: 'app-edit-address',
   templateUrl: './edit-address.component.html',
   styleUrls: ['./edit-address.component.css']
 })
-export class EditAddressComponent implements OnInit{
+export class EditAddressComponent implements OnInit, AfterViewInit{
   isFormSubmit:boolean=false;
   currentLanguageData: any = {};
   param1: string;
@@ -107,5 +108,12 @@ console.log("value",this.radioValue);
         })
 this.router.navigate(['/account/address']);
   }
-
+ngAfterViewInit(): void {
+  //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+  //Add 'implements AfterViewInit' to the class.
+  setTimeout(function(){
+    $(".pac-container").prependTo("#pac-container")
+    $(".pac-container").addClass("mycontainer");
+  }, 300)
+}
 }

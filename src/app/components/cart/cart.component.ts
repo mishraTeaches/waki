@@ -39,15 +39,19 @@ dataa: any = {}
   constructor(cartdetail:CartdetailService,private ngxloader:NgxUiLoaderService,private wakiservice: WakiServiceService,private router:Router,private toastr: ToastrService,private currencyConvertService:CurrencyconvertService,private languageTranslateInfoService:ChangeLangService)
   {
     this.cartdetail = cartdetail;
-
+    // this.cartdetail.currentMessage.subscribe(data => {
+    //   this.cartcount = data;
+    //   console.log("cartcount>>>>.carttttt 44", this.cartcount);
+    //           });
+    this.cartList();
     languageTranslateInfoService.translateInfo.subscribe((data) => {
       if(data){
 
                  this.currentLanguageData = data;
-                 this.cartList();
+                 console.log("currentlanguage",this.currentLanguageData['currencyData']['sign']);
                }
        });
-       window.scrollTo(0, 0)
+       $("html, body").animate({ scrollTop: 0 }, "slow");
        if((localStorage.getItem('userLoginDetail'))||localStorage.getItem("sociallogin") || localStorage.getItem("register") )
        {
         this.user = (JSON.parse(localStorage.getItem('userLoginDetail'))|| JSON.parse(localStorage.getItem("sociallogin")) || JSON.parse(localStorage.getItem("register")));
@@ -63,11 +67,14 @@ cartList(){
     this.cartResponseLength = Object.keys(this.cartResponse).length;
     this.productDetail = this.cartResponse['productDetail'];
     if(this.cartResponseLength > 0) {
-this.cartcount = this.productDetail.length;
-this.cartdetail.changeMessage(this.cartcount);
+this.cartcount = this.productDetail.length || this.cartResponseLength;
+    }
+    else {
+      this.cartcount = this.cartResponseLength;
     }
     this.bagDetail = this.cartResponse['bagDetails'];
     this.addresses = this.cartResponse['address'];
+    this.cartdetail.changeMessage(this.cartcount);
     this.notfoundcart = false;
     if (this.cartResponseLength == 0) {
 this.notfoundcart = true;
@@ -78,20 +85,43 @@ this.toastr.error("Empty list please add products")
 modal(event){
   this.addresses[0].addresses = event.addresses;
   this.selectedAddress = event;
-  console.log("selectedaddress",this.selectedAddress);
+  console.log("selectedaddress", this.selectedAddress);
 }
 removecart(productId){
-  let URL =  appConstant.baseUrl+'vendor/deleteCart';
-  this.dataa={"productId": productId,"lang":this.currentLanguageData['lng_code']}
+  let URL =  appConstant.baseUrl + 'vendor/deleteCart';
+  this.dataa={"productId": productId,"lang": this.currentLanguageData['lng_code']}
   this.wakiservice.createPostRequest(URL,this.dataa,1).subscribe(response=>{
     if(response.statusCode === 200){
       this.cartdetail.changeMessage(this.cartcount);
+      console.log("cartcount>>>cart",this.cartcount);
       this.cartList();
      }
   });
 }
 radioChange(value){
 this.radiovalue = value;
+if(this.radiovalue=='online'){
+  const node = document.createElement('script');
+                node.src = 'https://www.paytabs.com/express/v4/paytabs-express-checkout.js';
+                node.type = 'text/javascript';
+                node.setAttribute("id","paytabs-express-checkout"),
+                node.setAttribute("data-secret-key","HaypqELLChscu03jPMAMhV3DzHgnBcninVINAtzdL1qf2tzSf9Ex5IbEpr21Eqj1m2PWvpagrAwt35ljf0QkI2Z8t197rt9NvYK0"),
+                node.setAttribute("data-merchant-id","10041158"),
+                node.setAttribute("data-url-redirect" , 'https://waki.store:6262/home'),
+                node.setAttribute("data-amount",this.bagDetail['bagTotal']),
+                node.setAttribute("data-currency", 'SAR'),
+                // node.setAttribute("data-currency", 'INR'),
+                node.setAttribute("data-title",'ishu'),
+                node.setAttribute("data-product-names","Iphone"),
+                node.setAttribute("data-order-id","25"),
+                node.setAttribute("data-customer-phone-number",this.user['phone']),
+                node.setAttribute("data-customer-email-address",this.user['email']),
+                node.setAttribute("data-customer-country-code",this.user['countryCode']),
+                document.getElementsByTagName('head')[0].appendChild(node);
+setTimeout(() => {
+  $(".PT_open_iframe").trigger("click");
+}, 1000);
+}
 }
 addToWishlist(pdetail)
   {
@@ -130,11 +160,10 @@ return;
   if(this.addresses.length == 1) {
     this.chooseAddress = this.addresses[0]['_id'];
   }
-  if(this.chooseAddress == "" || this.radiovalue == "") {
+  if(this.chooseAddress == undefined || this.radiovalue == "") {
     this.toastr.error("please create address or select payment category")
     return;
   }
-
   let URL = appConstant.baseUrl + 'vendor/checkoutOrder';
   let data = {"lang":this.currentLanguageData['lng_code'],"addressId": this.chooseAddress,"orderPayment": this.radiovalue};
 this.wakiservice.createPostRequest(URL, data, 1).subscribe((response: any) => {

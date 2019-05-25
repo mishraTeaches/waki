@@ -22,10 +22,14 @@ userlogindetail:any={};
 dataa:any={}
 productdetail: any = [];
 sizeValue:any = "";
+wishlistcount:any='';
 ratingandreview:any=[];
+cartcount:any='';
+wishlistresponse:any=[];
 gotocart:boolean = false;
 colorSelected:any="";
 isReadeMore:boolean = true;
+wishlistcountlength:any={};
 responseData:any=[];
 cartResponse:any={};
 cartResponseLength;any='';
@@ -148,6 +152,7 @@ addtowishlist()
       this.wakiservice.createPostRequest(URL, this.dataa,1).subscribe((response: any) => {
         if(response['statusCode'] === 200)
         {
+          this.showWishlist();
           this.toastr.success(response['statusMessage']);
         }
         else{
@@ -162,9 +167,25 @@ addtowishlist()
         this.router.navigate(['/login']);
       }, 1000);
       }
-
+setTimeout(() => {
+  this.carddetail.wishlistCount(this.wishlistcount);
+}, 2000);
   }
-
+  cartList(){
+    let URL = appConstant.baseUrl + `vendor/listOfAddCart/?lang=${this.currentLanguageData['lng_code']}`;
+    this.wakiservice.createGetRequest(URL,1).subscribe((response: any) => {
+      this.cartResponse = response['result'];
+      this.productdetailcart = this.cartResponse['productDetail'];
+      this.productIsExistInCart();
+      this.cartResponseLength = Object.keys(this.cartResponse).length;
+      if(this.cartResponseLength > 0) {
+        this.cartcount = this.productdetailcart.length || this.cartResponseLength;
+            }
+            else {
+              this.cartcount = this.cartResponseLength;
+            }
+  });
+  }
   addtocart(){
     if(this.sizeValue =='' || this.materialValue =='' || this.colorSelected =='')
     {
@@ -175,15 +196,14 @@ addtowishlist()
       let URL = appConstant.baseUrl+`vendor/addToCart`;
   this.dataa={"lang":this.currentLanguageData['lng_code'],"productId":this.param1,"size":this.sizeValue,"color":this.colorSelected,"material":this.materialValue}
   this.wakiservice.createPostRequest(URL, this.dataa,1).subscribe((response: any) => {
-    if(response['statusCode'] === 200)
+    if(response['statusCode'] == 200)
     {
-      this.toastr.success(response['statusMessage']);
       this.cartList();
+      this.toastr.success(response['statusMessage']);
     }
     else{
 this.toastr.error(response['statusMessage']);
     }
-
   });
 }
 else{
@@ -192,16 +212,11 @@ else{
     this.router.navigate(['/login']);
   }, 1000);
   }
+  setTimeout(() => {
+    this.carddetail.changeMessage(this.cartcount);
+  }, 3000);
 }
-cartList(){
-  let URL = appConstant.baseUrl + `vendor/listOfAddCart/?lang=${this.currentLanguageData['lng_code']}`;
-  this.wakiservice.createGetRequest(URL,1).subscribe((response: any) => {
-    this.cartResponse = response['result'];
-    this.productdetailcart = this.cartResponse['productDetail'];
-    this.productIsExistInCart();
-    this.cartResponseLength = Object.keys(this.cartResponse).length;
-});
-}
+
 productIsExistInCart(){
   let status = false;
   this.productdetailcart.map((item) => {
@@ -213,10 +228,14 @@ productIsExistInCart(){
 }
 showWishlist()
   {
-      let URL = appConstant.baseUrl+'vendor/wishList';
+      let URL = appConstant.baseUrl + 'vendor/wishList';
   this.wakiservice.createGetRequest(URL,1).subscribe((response: any) => {
     if (response['statusCode'] === 200 && response['result'].length > 0)
     {
+this.wishlistcount = this.wishlistresponse.length;
+if(this.wishlistcount == 0) {
+  this.wishlistcount = '';
+}
       this.responseData = response['result'];
       this.productIsExistsInWishlist();
     }
